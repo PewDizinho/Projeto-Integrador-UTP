@@ -59,3 +59,29 @@ O jogo é projetado para ser jogado apenas uma vez, com cada sessão oferecendo 
 
 ## Conclusão
 Escape from Tuiuti é mais do que apenas um jogo - é uma oportunidade de aprender de forma divertida e interativa, aplicando os conhecimentos adquiridos durante o curso em situações práticas e desafiadoras. Ao mesmo tempo, proporciona uma experiência de entretenimento envolvente e emocionante, que mantém os jogadores engajados e entretidos do início ao fim. Prepare-se para uma jornada de escape única e inesquecível na Universidade Tuiuti do Paraná!
+
+
+# Contribuição
+
+Passo a passo de como contribuir nesse projeto
+
+1 - Copie o URL do repositório 
+
+![image](https://github.com/Pews-Cavern/Projeto-Integrador-UTP/assets/55335712/f4f6e2af-ee4c-4491-9927-0effcd65c907)
+
+2 - Git Clone
+
+![image](https://github.com/Pews-Cavern/Projeto-Integrador-UTP/assets/55335712/c3426460-7992-4e15-a5df-5379383b73de)
+
+3 - Mude seu caminho para a pasta do repositório
+
+![image](https://github.com/Pews-Cavern/Projeto-Integrador-UTP/assets/55335712/83dc5822-8d05-4f42-899e-f3ad775cdce3)
+
+4 - Instale as dependencias do projeto
+
+![image](https://github.com/Pews-Cavern/Projeto-Integrador-UTP/assets/55335712/00bcf4e3-08c9-44c0-a767-636bf9e0a3d1)
+
+5 - Execute o programa
+
+![image](https://github.com/Pews-Cavern/Projeto-Integrador-UTP/assets/55335712/9f7d4258-1ee7-4a16-8096-29e2bc5961a8)
+
