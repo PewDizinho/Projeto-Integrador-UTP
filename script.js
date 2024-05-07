@@ -24,6 +24,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 document.addEventListener("keyup", function (event) {
+    if(event.key != direction) return;
     isWalking = false;
     clearInterval(walk);
 });
