@@ -1,0 +1,26 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+
+div#ground {
+    height: 261px;
+    width: 100%;
+    background-color: black;
+    position: absolute;
+    bottom: 0px;
+}
+
+div#enemy {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(255, 234, 0);
+    position: absolute;
+    bottom: 261px;
+    right: 0px;
+}

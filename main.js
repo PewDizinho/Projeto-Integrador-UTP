@@ -16,9 +16,9 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js')
     }
 
-  })
+  });
 
-  win.loadFile('./src/room1/index.html');
+  win.loadFile('./src/jogo-movimentacao/index.html');
 
   // win.on('close', (e) => {
   //   win.setTitle('I do not want to be closed');

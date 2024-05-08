@@ -10,7 +10,7 @@ const gameSpeed = 1.7;
 // })
 
 //Temp Confignp
-let playerPosition = [0, 0]; //X, Y
+let playerPosition = [60, 300]; //X, Y
 let isWalking = false;
 let walk, direction;
 document.addEventListener("keydown", function (event) {
