@@ -1,0 +1,63 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url("../assets/quadro.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+
+div#question {
+    position: absolute;
+    width: 563px;
+    height: 290px;
+    background-color: rgb(0, 161, 0);
+    margin-left: 150px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+
+p#question {
+    color: white;
+    font-weight: 800;
+}
+
+div#awnsers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 150px;
+}
+
+p.awnsers {
+    font-size: larger;
+    background-color: grey;
+    border: black 1px solid;
+    padding: 5px;
+    width: 180px;
+    cursor: pointer;
+    user-select: none;
+}
+
+p.awnsers:hover:not(.selected) {
+    background-color: lightgray;
+}
+
+
+p.selected {
+    background-color: green;
+}
+
+div#timer{
+
+    background-color: green;
+    height: 20px;
+    width: 100%;
+}
+
