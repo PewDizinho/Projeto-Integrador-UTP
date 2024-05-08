@@ -18,7 +18,7 @@ function createWindow() {
 
   })
 
-  win.loadFile('./lib/room1/index.html');
+  win.loadFile('./src/room1/index.html');
 
   // win.on('close', (e) => {
   //   win.setTitle('I do not want to be closed');
