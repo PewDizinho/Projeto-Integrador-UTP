@@ -1,8 +1,5 @@
-const range = document.querySelector('input');
-const div = document.querySelector('.moji');
-const mojis = ['😄', '🙂', '😐', '😑', '☹️', '😩', '😠', '😡', '🤢', '😤', '💩'];
 
-range.addEventListener('input', (e) => {
-    let rangeValue = e.target.value;
-    div.textContent = mojis[rangeValue];
-});
+
+document.getElementById("back").addEventListener("click", () => {
+    window.location.href = "../home-screen/index.html";
+})

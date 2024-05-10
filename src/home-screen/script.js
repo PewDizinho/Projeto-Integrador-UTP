@@ -6,7 +6,7 @@ document.getElementById("play").addEventListener("click", () => {
     setTimeout(() => document.getElementById("transition").classList = "transition", 100);
 
     setTimeout(() => {
-        // window.location.href = "../index.html";
+         window.location.href = "../index.html";
     }, 1750);
 });
 

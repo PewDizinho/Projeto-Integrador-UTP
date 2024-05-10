@@ -51,6 +51,17 @@ h1 {
     text-align: center;
 }
 
+div#credits {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+div#credits * {
+    margin: 0px;
+}
+
 /*button */
 
 button {
@@ -179,6 +190,3 @@ span {
     font-family: "RAVIE";
 }
 
-span:last-child {
-    color: tomato;
-}
