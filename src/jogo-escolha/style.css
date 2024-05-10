@@ -11,13 +11,24 @@ body {
 }
 
 
+div#teacher {
+    background-image: url("../assets/prof.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 150px;
+    height: 200px;
+    bottom: 310px;
+    position: absolute;
+
+}
 
 div#whiteboard {
     position: absolute;
-    width: 563px;
-    height: 290px;
-    background-color: rgb(0, 161, 0);
-    margin-left: 150px;
+    width: 530px;
+    height: 265px;
+    background-color: rgba(0, 69, 0, 0);
+    margin-left: 300px;
     margin-top: 30px;
     padding: 20px;
 }
@@ -51,13 +62,16 @@ p.awnsers:hover:not(.selected) {
 
 
 p.selected {
-    background-color: green;
+    background-color: rgb(0, 161, 0);
 }
 
-div#timer{
+div#timer {
 
     background-color: green;
     height: 20px;
     width: 100%;
 }
 
+p#result {
+    color: white;
+}

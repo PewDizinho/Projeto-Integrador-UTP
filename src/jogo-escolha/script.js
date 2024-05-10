@@ -83,10 +83,14 @@ tickTime();
 
 function checkForWin(selected, question) {
 
-    let obj = question[["", "a", "b", "c", "d"][selected.replace("awnser-", "")]];
-    if (obj.correto)
-        document.getElementById("result").innerText = `Correto! ${obj.mensagem}`;
-    else
-        document.getElementById("result").innerText = `Errado! ${obj.mensagem}`;
+    if (selected) {
+        let obj = question[["", "a", "b", "c", "d"][selected.replace("awnser-", "")]];
+        if (obj.correto)
+            document.getElementById("result").innerText = `Correto! ${obj.mensagem}`;
+        else
+            document.getElementById("result").innerText = `Errado! ${obj.mensagem}`;
+
+    } else
+        document.getElementById("result").innerText = "Errado! Você não selecionou nenhuma resposta.";
 
 }

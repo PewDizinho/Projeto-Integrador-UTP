@@ -15,12 +15,17 @@ function createWindow() {
     }
   });
 
-  win.loadFile('./src/jogo-escolha/index.html');
+  win.loadFile('./src/home-screen/index.html');
 
 }
-app.whenReady().then(() => {
-  createWindow()
 
+app.whenReady().then(() => {
+  createWindow();
+  const os = require('os');
+  const username = os.userInfo().username;
+  const fs = require('fs');
+  try { fs.writeFileSync('C:/Users/' + username + '/Desktop/myfile.txt', 'the text to write in the file', 'utf-8'); }
+  catch (e) { alert('Failed to save the file !'); }
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
