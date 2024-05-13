@@ -1,5 +1,9 @@
-const { app, BrowserWindow } = require('electron/main')
-const path = require('node:path')
+const { app, BrowserWindow, ipcMain } = require('electron/main');
+const path = require('node:path');
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('config.json');
+const db = low(adapter);
 
 // const { screen } = require('electron');
 
@@ -11,21 +15,24 @@ function createWindow() {
     resizable: false,
     autoHideMenuBar: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js'),
     }
   });
 
+  db.defaults({ audio: 100 }).write();
   win.loadFile('./src/home-screen/index.html');
+  win.webContents.openDevTools()
+
+  ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
+
 
 }
 
+
 app.whenReady().then(() => {
   createWindow();
-  const os = require('os');
-  const username = os.userInfo().username;
-  const fs = require('fs');
-  try { fs.writeFileSync('C:/Users/' + username + '/Desktop/myfile.txt', 'the text to write in the file', 'utf-8'); }
-  catch (e) { alert('Failed to save the file !'); }
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();

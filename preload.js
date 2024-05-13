@@ -1,6 +1,8 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
-
+window.ipcRenderer = require('electron').ipcRenderer;
 contextBridge.exposeInMainWorld('electronAPI', {
-  setTitle: (title) => ipcRenderer.send('set-title', title)
+  setConfig: (config, value) => ipcRenderer.send('set-config', config, value),
+//  getConfig: (callback) => ipcRenderer.on('get-config', (_event, value) => callback(value)),
+ 
 })
 
