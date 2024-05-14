@@ -7,7 +7,7 @@
   },
   "name": "electron",
   "version": "1.0.0",
-  "description": "TEste",
+  "description": "Escape from Tuiuti - Projeto Integrador 2024",
   "main": "main.js",
   "dependencies": {
     "boolean": "^3.2.0",

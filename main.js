@@ -21,9 +21,8 @@ function createWindow() {
   });
 
   db.defaults({ audio: 100 }).write();
-  win.loadFile('./src/home-screen/index.html');
+  win.loadFile('./src/index.html');
   win.webContents.openDevTools()
-
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
 
 

@@ -1,0 +1,93 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url("../assets/mesa.png");
+    background-position: center;
+}
+
+
+
+img#card {
+    width: 100px;
+}
+
+img#centerCard {
+    width: 100px;
+    position: absolute;
+    margin: 25% 15%;
+    rotate: 35deg;
+    z-index: 2;
+}
+
+img#vira {
+    width: 100px;
+    position: absolute;
+    margin: 27% 19%;
+    rotate: 125deg;
+    z-index: 1;
+}
+
+div#cardOnTheTable {
+    position: absolute;
+    margin: 30% 50%;
+    transform: translate(-50%, -50%);
+}
+
+div#cardOnTheTable>img {
+    position: absolute
+}
+
+div#enemyCards {
+    position: absolute;
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    justify-content: center;
+    margin: -50px 35%
+}
+
+div#playerCards {
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+    justify-content: center;
+    margin: 550px 35%;
+
+}
+
+
+
+
+div#playerCards>img:hover {
+    cursor: pointer;
+    animation: cardUp 500ms forwards;
+}
+
+div#playerCards>img:not(:hover) {
+    animation: cardDown 500ms forwards;
+}
+
+@keyframes cardUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50px);
+    }
+}
+
+@keyframes cardDown {
+    0% {
+        transform: translateY(-50px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
