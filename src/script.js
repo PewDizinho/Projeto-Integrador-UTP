@@ -1,3 +1,8 @@
+
+
+
+
+
 document.getElementById("play").addEventListener("click", () => {
     let audio = new Audio("./assets/sounds/gameStart.mp3");
     audio.play();
@@ -6,7 +11,6 @@ document.getElementById("play").addEventListener("click", () => {
         window.location.href = "./sala-1/index.html";
     }, 1750);
 });
-
 document.getElementById("config").addEventListener("click", () => {
     let audio = new Audio("./assets/sounds/gameStart.mp3");
     audio.play();

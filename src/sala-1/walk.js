@@ -1,3 +1,4 @@
+import { dialog } from "../util/dialogo.js";
 const player = document.getElementById("player");
 const playerSpeed = 30;
 const gameSpeed = 1.7;
@@ -12,6 +13,9 @@ let skin = 1;
 let playerPosition = [60, 300]; //X, Y
 let isWalking = false;
 let walk, direction;
+
+dialog("Paulo", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", document.getElementsByTagName("body")[0]);
+
 document.addEventListener("keydown", function (event) {
     if (["w", "s", "d", "a"].indexOf(event.key) != -1) {
         if (direction != event.key) {
@@ -25,7 +29,6 @@ document.addEventListener("keydown", function (event) {
         walkDelay(event.key);
     }
 });
-
 document.addEventListener("keyup", function (event) {
     if (["w", "s", "d", "a"].indexOf(event.key) != -1) {
         if (event.key != direction) return;
