@@ -3,7 +3,7 @@ document.getElementById("play").addEventListener("click", () => {
     audio.play();
     setTimeout(() => document.getElementById("transition").classList = "transition", 100);
     setTimeout(() => {
-        window.location.href = "./jogo-truco/index.html";
+        window.location.href = "./sala-1/index.html";
     }, 1750);
 });
 

@@ -10,11 +10,11 @@ body {
 
 
 
-img#card {
+img.card {
     width: 100px;
 }
 
-img#centerCard {
+img.centerCard {
     width: 100px;
     position: absolute;
     margin: 25% 15%;
@@ -22,7 +22,7 @@ img#centerCard {
     z-index: 2;
 }
 
-img#vira {
+img.vira {
     width: 100px;
     position: absolute;
     margin: 27% 19%;
