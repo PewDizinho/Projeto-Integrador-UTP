@@ -4,19 +4,12 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: url("../assets/fundo-cima.jpg");
+    background-image: url("../assets/sala-1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
-div.wall {
-    background-color: black;
-    height: 2px;
-    width: 150px;
-    margin: 100px;
-    position: absolute;
-}
 
 div#transition {
     background-color: black;
@@ -48,6 +41,4 @@ div.transition {
         width: 0px;
         height: 0px;
     }
-
-
 }
