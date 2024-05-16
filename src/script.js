@@ -1,8 +1,3 @@
-
-
-
-
-
 document.getElementById("play").addEventListener("click", () => {
     let audio = new Audio("./assets/sounds/gameStart.mp3");
     audio.play();

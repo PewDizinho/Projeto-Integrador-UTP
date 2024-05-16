@@ -1,3 +1,4 @@
+import { dialog } from "../util/dialogo.js";
 
 const player = document.getElementById("player");
 
@@ -78,7 +79,7 @@ const walkDelay = (key) => {
     walk = setInterval(() => { walkDelay(key) }, gameSpeed * 100);
 
     skin !== 3 ? skin++ : skin = 2;
-    // document.getElementById("console").innerText = `Player X: ${playerPosition[0]} Y: ${playerPosition[1]} | Collision: ${checkCollision(0, 0)}`
+    document.getElementById("console").innerText = `Player X: ${playerPosition[0]} Y: ${playerPosition[1]} | Collision: ${checkCollision(0, 0)}`
     player.src = `../assets/player-${skin}.png`;
 }
 const checkCollision = (x, y) => {
@@ -97,4 +98,5 @@ const checkCollision = (x, y) => {
     });
     return collision;
 };
-const print = (text) => document.getElementById("console").innerText = text;
+
+dialog("Mark", "Isso aqui demorou muito pra fazer, na verdade, não é nem que demorou muito foi mais eu com sono tentando fazer um código complicado desse fucionar na merda do html e do caralhudo do javascript puro e agora eu tenho que continuar enchendo linguiça nesse texto pra que eu consiga mostrar o que eu quero mostrar nessa caralha agora acabou o espaço daqui E a partir daqui o texto é diferente, pq ele não coube no outro dialogo, então o código jogou ele pra essa segunda tela automaticamente", document.getElementsByTagName("body")[0]);
