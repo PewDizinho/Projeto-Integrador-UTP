@@ -1,7 +1,9 @@
+
 let counter = 0;
 let isAnimating = false;
 let myAnimation;
-export function dialog(name, dialog, body) {
+let finished = false;
+export async function dialog(name, dialog, body) {
 
     let dialogo = document.createElement("div");
     let nextArrow = document.createElement("div");
@@ -96,9 +98,27 @@ export function dialog(name, dialog, body) {
         } else {
             dialogo.remove();
             title.remove();
+            finished = true;
         }
     });
-
+    const wait = async () => {
+        console.log("Esperano");
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                if (finished) {
+                    resolve(true)
+                } else resolve(false)
+            }, 50);
+        });
+    }
+    const fuck2 = async () => {
+        if (await wait()) {
+            return true;
+        } else {
+            await fuck2();
+        }
+    }
+    return await fuck2();
 }
 //350 MAX
 const textAnimation = (textInner, newDialog) => {
@@ -115,5 +135,5 @@ const textAnimation = (textInner, newDialog) => {
         isAnimating = true;
         textInner.innerText += newDialog[counter++];
         textAnimation(textInner, newDialog);
-    }, 1);
+    }, 15);
 }
