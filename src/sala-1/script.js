@@ -32,7 +32,7 @@ let doors = [{
 let playerPosition = [630, 270];
 let rotation = 180;
 dialog("Audrey", "Olá boa tarde, me empresta 10 mil Kwanzas?", document.getElementsByTagName("body")[0]).then((e) => {
-combat("../../sala-1/index.html", "paulo")
+    combat("../../sala-1/index.html", "paulo")
 });
 
 walk(document, walls, doors, playerPosition, rotation);
