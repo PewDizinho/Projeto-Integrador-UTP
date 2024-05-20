@@ -48,7 +48,7 @@ function pickRandomCard() {
 
     let random = Math.floor(Math.random() * 4);
     cards[cardID[random]].splice(Math.floor(Math.random() * cards[cardID[random]].length), 1);
-    // console.log(cards);
+
     return {
         naipe: cardID[random],
         card: cards[cardID[random]][Math.floor(Math.random() * cards[cardID[random]].length)]
@@ -85,15 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function enemyTime() {
     const cardsOrder = ["3", "2", "1", "k", "j", "q", "4", "5", "6", "7"];
     const naipeOrder = ["ouro", "espada", "copas", "paus"];
-    console.log(cardsOrder.indexOf(cardOnTheTable[0]
-    ))
+
     let cardToPlay = enemyCards[0];
     for (let card of enemyCards) {
-        console.log(cardsOrder.indexOf(cardOnTheTable[0]) + " - " + cardsOrder.indexOf(card.card))
         if (cardsOrder.indexOf(cardOnTheTable[0]) < cardsOrder.indexOf(card.card)) {
-            console.log("Card " + JSON.stringify(card));
             enemyCards[enemyCards.indexOf(card)] = 0;
-            console.log(enemyCards)
+
             cardToPlay = card;
         }
 

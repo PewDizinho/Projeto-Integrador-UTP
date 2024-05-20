@@ -77,7 +77,7 @@ const walkDelay = (key) => {
     //         document.getElementsByClassName("point")[0].remove()
     //         initGame()
     //     } else {
-    //         console.log("perdeu");
+    //       
     //     }
     //     return;
     // }
@@ -140,7 +140,7 @@ function enemyTarget() {
             } else {
                 pos[0] += enemySpeed;
             }
-            //console.log(pos)
+          
             enemy.style.margin = `${pos[0]}px ${pos[1]}px`;
         }
         enemyTarget();

@@ -1,3 +1,4 @@
+@import url('../../assets/fonts/minecraftia.ttf');
 body {
     width: 100vw;
     height: 100vh;
@@ -7,6 +8,13 @@ body {
     background-color: black;
 
 }
+p {
+    font-family: 'minecraftia';
+    color: white;
+    position: absolute;
+    margin: 550px 400px;
+}
+
 
 div#playground {
     position: absolute;

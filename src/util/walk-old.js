@@ -79,31 +79,19 @@ export function walk(document, walls, doors, playerPosition, rotation) {
         player.src = `../assets/player-${skin}.png`;
     }
 
-
+    
     const checkCollision = (x, y) => {
         let playerX = playerPosition[0] + x;
         let playerY = playerPosition[1] + y;
         let collision = false;
-        if (playerX < 0 || playerX > 840 || playerY < 0 || playerY > 600) return "wall";
+        if (playerX < 0 || playerX > 840 || playerY < 0 || playerY > 600) return true;
         walls.forEach(wall => {
             let startWall = wall[0];
             let endWall = wall[1];
             if (playerX > startWall[0] && playerX < endWall[0] && playerY < startWall[1] && playerY > endWall[1]) {
-                collision = "wall";
+                collision = true;
             }
         });
-        doors.forEach(door => {
-            let startDoor = door.position[0];
-            let endDoor = door.position[1];
-            if (playerX >= startDoor[0] && playerX <= endDoor[0] && playerY <= startDoor[1] && playerY >= endDoor[1]) {
-              
-                location.href = `../${door.destination}/index.html`;
-                collision = `door-${door.destination}-${door.needTag}`;
-            }
-        })
-
-
-
         return collision;
     };
 }

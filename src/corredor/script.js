@@ -26,8 +26,8 @@ let walls = [
 
 let doors = [
     {
-        position: [[0, 240], [30, 30]],
-        destination: "sala",
+        position: [[270, 210], [360, 210],],
+        destination: "sala-1",
         needTag: "chave"
     }
 ]

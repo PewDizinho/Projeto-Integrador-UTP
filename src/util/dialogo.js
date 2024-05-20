@@ -102,7 +102,7 @@ export async function dialog(name, dialog, body) {
         }
     });
     const wait = async () => {
-        console.log("Esperano");
+      
         return new Promise(function (resolve, reject) {
             setTimeout(function () {
                 if (finished) {
