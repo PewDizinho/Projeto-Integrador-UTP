@@ -23,7 +23,14 @@ let walls = [
     ]
 ];
 
-let doors = [];
+let doors = [
+    {
+        position: [[540, 600], [690, 600],],
+        destination: "corredor",
+        needTag: "chave"
+    }
+]
+
 
 let playerPosition = [630, 270];
 let rotation = 180;
@@ -44,7 +51,7 @@ document.addEventListener("keydown", (e) => {
                 dialog: {
                     title: "João",
                     message: "Vamos Lutar!",
-                    action: () => { combat("../../sala-1/index.html", "paulo")}
+                    action: () => { combat("../../sala-1/index.html", "paulo") }
                 },
             }
         ]);

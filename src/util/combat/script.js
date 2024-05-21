@@ -1,31 +1,28 @@
-
-
 const playerSpeed = 20;
 const enemySpeed = 2;
 const gameSpeed = 1;
 const player = document.getElementById("player");
-let lastHitEnemy, lifePoint = 3;
+let lastHitEnemy, walk, myTimeout, myOtherTimeout, direction, lifePoint = 3;
 let pointPosition, playerPosition = [160, 140];
+let gameStatus = "playing";
 let isWalking = false;
-let walk, myTimeout, myOtherTimeout, direction;
 player.style.margin = `${playerPosition[1]}px ${playerPosition[0]}px`;
 document.addEventListener("keydown", function (event) {
-    if (["w", "s", "d", "a"].indexOf(event.key) != -1) {
-
-        if (direction != event.key) {
+    if (["w", "s", "d", "a"].indexOf(event.key.toLowerCase()) != -1) {
+        if (direction != event.key.toLowerCase()) {
             clearInterval(walk);
             isWalking = false;
         }
-        direction = event.key;
+        direction = event.key.toLowerCase();
         if (isWalking) return;
         clearInterval(walkDelay);
         isWalking = true;
-        walkDelay(event.key);
+        walkDelay(event.key.toLowerCase());
     }
 });
 document.addEventListener("keyup", function (event) {
-    if (["w", "s", "d", "a"].indexOf(event.key) != -1) {
-        if (event.key != direction) return;
+    if (["w", "s", "d", "a"].indexOf(event.key.toLowerCase()) != -1) {
+        if (event.key.toLowerCase() != direction) return;
         isWalking = false;
         clearInterval(walk);
     }
@@ -66,32 +63,20 @@ const walkDelay = (key) => {
     walk = setInterval(() => { walkDelay(key) }, gameSpeed * 100);
 
 };
-
-const initGame = () => {
-    spawnEnemyX();
-};
 let timeOutEnemy;
-
-
-//------------------------------------------------------------
-
 //------------------------------------------------------------
 const spawnWallX = () => {
-
     const wall = document.createElement("div");
     wall.classList.add("wallEnemy");
     wall.id = "wall-left";
     document.getElementById("playground").appendChild(wall);
-
     const wallRight = document.createElement("div");
     wallRight.classList.add("wallEnemy");
     wallRight.id = "wall-right";
-
     wallRight.style.right = "0px";
     document.getElementById("playground").appendChild(wallRight);
     moveWallX(wall, wallRight);
 };
-
 let wallDirectionX = "ino";
 const moveWallX = (wallLeft, wallRight) => {
     if (lifePoint <= 0) return;
@@ -114,13 +99,11 @@ const moveWallX = (wallLeft, wallRight) => {
             } else {
                 wallLeft.remove();
                 wallRight.remove();
-                spawnWallY()
-
+                animationIsOver = true;
             }
         }
     }, 10);
-}
-
+};
 const spawnWallY = () => {
 
     const wall = document.createElement("div");
@@ -136,7 +119,6 @@ const spawnWallY = () => {
     document.getElementById("playground").appendChild(wallBottom);
     moveWallY(wall, wallBottom);
 };
-
 let wallDirectionY = "ino";
 const moveWallY = (wallTop, wallBottom) => {
     if (lifePoint <= 0) return;
@@ -159,7 +141,8 @@ const moveWallY = (wallTop, wallBottom) => {
             } else {
                 wallTop.remove();
                 wallBottom.remove();
-                spawnWallX()
+                animationIsOver = true;
+
             }
         }
     }, 10);
@@ -184,7 +167,6 @@ const checkForColissionWallY = (wall) => {
                 element.style.animation = "none";
             }, 500);
         }
-        console.log(lifePoint)
         if (lifePoint > 0) return;
         loose();
     }
@@ -209,14 +191,13 @@ const checkForColissionWallX = (wall) => {
                 element.style.animation = "none";
             }, 500);
         }
-        console.log(lifePoint)
         if (lifePoint > 0) return;
         loose();
     }
 
 }
 //------------------------------------------------------------
-
+let animationIsOver = false;
 const spawnEnemyX = () => {
     for (let i = 0; i < 18; i++) {
         const enemy = document.createElement("div");
@@ -228,21 +209,21 @@ const spawnEnemyX = () => {
         enemy.style.margin = `0px ${i * 20}px`;
         enemy.id = i;
         document.getElementById("playground").appendChild(enemy);
-        moveEnemyX(enemy);
+        moveEnemyX(enemy, true);
+
     }
 };
-const moveEnemyX = (enemy) => {
-    if (lifePoint <= 0) return;
+const moveEnemyX = (enemy, root) => {
+    if (lifePoint <= 0) return "Game Over";
     myTimeout = setTimeout(() => {
         enemy.style.margin = `${enemy.offsetTop + enemySpeed}px ${enemy.offsetLeft}px`;
         if (enemy.offsetTop > 340) {
             enemy.remove();
-            spawnEnemyY();
-
+            animationIsOver = true;
             return;
         }
         checkForColissionBlock(enemy);
-        moveEnemyX(enemy);
+        moveEnemyX(enemy, false);
     }, 20);
 };
 const spawnEnemyY = () => {
@@ -266,7 +247,8 @@ const moveEnemyY = (enemy) => {
         enemy.style.margin = `${enemy.offsetTop}px ${enemy.offsetLeft + enemySpeed}px`;
         if (enemy.offsetLeft > 340) {
             enemy.remove();
-            spawnWallX()
+            animationIsOver = true;
+
             return;
         }
         checkForColissionBlock(enemy);
@@ -301,6 +283,7 @@ const checkForColissionBlock = (enemy) => {
 };
 //------------------------------------------------------------
 const loose = () => {
+    gameStatus = "loose";
     document.getElementById("gameOver").style.display = "block";
     document.getElementById("gameOver").style.animation = "gameOverLight 1s ease-in-out infinite";
     setTimeout(() => {
@@ -308,13 +291,49 @@ const loose = () => {
         setTimeout(() => {
             player.style.animation = "none";
             player.style.margin = "1000px"
+            setTimeout(() => {
+                location.reload();
+            }, 1000)
         }, 1900)
 
     }, 500);
-
     clearInterval(walk);
     clearInterval(myTimeout);
     clearInterval(myOtherTimeout);
     document.getElementById("console").innerText = "Game Over";
+};
+const gameOrder = [
+    spawnEnemyX,
+    spawnEnemyY,
+    spawnWallX,
+    spawnWallY,
+];
+const wait = async () => {
+
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            if (finished) {
+                resolve(true)
+            } else resolve(false)
+        }, 50);
+    });
+};
+const initGame = async () => {
+    for (let order of gameOrder) {
+        order();
+        await until(() => animationIsOver === true);
+        animationIsOver = false;
+    }
+    if (!gameStatus) {
+        document.getElementById("console").innerText = "You Win!";
+    }
+};
+const until = (conditionFunction) => {
+    const poll = resolve => {
+        if (conditionFunction()) resolve();
+        else setTimeout(_ => poll(resolve), 400);
+    }
+
+    return new Promise(poll);
 }
 document.addEventListener("DOMContentLoaded", () => initGame());

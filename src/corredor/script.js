@@ -1,5 +1,4 @@
 import { walk } from '../util/walk.js';
-import { dialog } from '../util/dialogo.js';
 let walls = [
     [
         [-1, 240], [270, 180]
@@ -23,16 +22,12 @@ let walls = [
         [630, 610], [720, 360]
     ]
 ];
-
 let doors = [
     {
         position: [[270, 210], [360, 210],],
         destination: "sala-1",
         needTag: "chave"
     }
-]
-
+];
 let playerPosition = [30, 300];
-
-
 walk(document, walls, doors, playerPosition, -90);

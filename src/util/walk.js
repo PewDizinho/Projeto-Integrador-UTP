@@ -96,7 +96,6 @@ export function walk(document, walls, doors, playerPosition, rotation) {
             let startDoor = door.position[0];
             let endDoor = door.position[1];
             if (playerX >= startDoor[0] && playerX <= endDoor[0] && playerY <= startDoor[1] && playerY >= endDoor[1]) {
-              
                 location.href = `../${door.destination}/index.html`;
                 collision = `door-${door.destination}-${door.needTag}`;
             }
@@ -104,7 +103,7 @@ export function walk(document, walls, doors, playerPosition, rotation) {
 
 
 
-        return collision;
+        return collision; s
     };
 }
 
