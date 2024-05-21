@@ -25,8 +25,7 @@ function createWindow() {
   win.loadFile('./src/index.html');
   win.webContents.openDevTools()
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
-
-
+  ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())
 }
 
 

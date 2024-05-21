@@ -2,6 +2,7 @@
 import { interact } from '../util/interact.js';
 import { walk } from '../util/walk.js';
 import { combat } from '../util/combat.js';
+import { dialog } from '../util/dialogo.js';
 let walls = [
     [
         [780, 620], [840, -1]
@@ -41,7 +42,19 @@ let rotation = 180;
 walk(document, walls, doors, playerPosition, rotation);
 
 //690 270
-
+document.addEventListener("DOMContentLoaded", (e) => {
+    console.log(window.electronAPI.getConfig("win"))
+    if (window.electronAPI.getConfig("win").win) {
+        switch (window.electronAPI.getConfig("win").enemyName) {
+            case "joão":
+                dialog("João", "Você venceu!", document.getElementsByTagName("body")[0]).then(() => {
+                    window.electronAPI.setConfig("win", false);
+                    window.electronAPI.setConfig("enemyName", null);
+                });
+                break;
+        }
+    }
+})
 document.addEventListener("keydown", (e) => {
     if (e.key == "e") {
         interact(playerPosition, [
@@ -50,8 +63,10 @@ document.addEventListener("keydown", (e) => {
                 position: [690, 270],
                 dialog: {
                     title: "João",
-                    message: "Vamos Lutar!",
-                    action: () => { combat("../../sala-1/index.html", "paulo") }
+                    message: "Ei, Mark, acorda cara",
+                    action: () => { 
+                        dialog("Mark", "")
+                     }
                 },
             }
         ]);

@@ -3,13 +3,12 @@ let counter = 0;
 let isAnimating = false;
 let myAnimation;
 let finished = false;
-export async function dialog(name, dialog, body) {
+export async function dialog(name, dialog, body, callBack) {
 
     let dialogo = document.createElement("div");
     let nextArrow = document.createElement("div");
     let title = document.createElement("h1");
     let textInner = document.createElement("p");
-
     nextArrow.style.position = "absolute";
     nextArrow.style.width = "20px";
     nextArrow.style.height = "10px";
@@ -21,8 +20,6 @@ export async function dialog(name, dialog, body) {
     nextArrow.style.zIndex = "99";
     nextArrow.style.animation = "arrowAnimation 500ms infinite alternate";
     nextArrow.style.userSelect = "none";
-
-
     dialogo.style.position = "absolute";
     dialogo.style.width = "100%";
     dialogo.style.height = "30%";
@@ -39,7 +36,6 @@ export async function dialog(name, dialog, body) {
     dialogo.style.padding = "20px";
     dialogo.style.boxSizing = "border-box";
     dialogo.style.border = "6px solid rgb(41, 41, 41)";
-
     title.innerText = name;
     title.style.color = "white";
     title.style.position = "absolute";
@@ -47,7 +43,6 @@ export async function dialog(name, dialog, body) {
     title.style.margin = "14px";
     title.style.bottom = "130px";
     nextArrow.style.userSelect = "none";
-
     textInner.style.color = "white";
     textInner.style.textOverflow = "break-word";
     textInner.style.overflow = "hidden";
@@ -60,24 +55,13 @@ export async function dialog(name, dialog, body) {
     textInner.style.margin = "10px 30px";
     textInner.style.bottom = "24px";
     textInner.style.fontSize = "16px";
-
     body.appendChild(title);
     dialogo.appendChild(textInner);
     body.appendChild(dialogo);
     dialogo.appendChild(nextArrow);
     let style = document.createElement('style');
-
-    // Define your keyframe animation
-    style.innerHTML = `
-  @keyframes arrowAnimation {
-    0% {bottom: 15px;}
-    100% {bottom: 20px;}
-  }
-`;
-
-    // Append the style element to the head of the document
+    style.innerHTML = `@keyframes arrowAnimation {0% {bottom: 15px;}100% {bottom: 20px;}}`;
     document.head.appendChild(style);
-
     textAnimation(textInner, dialog.split(""));
     dialogo.addEventListener("click", function () {
         if (counter == 350) {
@@ -102,7 +86,7 @@ export async function dialog(name, dialog, body) {
         }
     });
     const wait = async () => {
-      
+
         return new Promise(function (resolve, reject) {
             setTimeout(function () {
                 if (finished) {
@@ -113,6 +97,7 @@ export async function dialog(name, dialog, body) {
     }
     const fuck2 = async () => {
         if (await wait()) {
+            callBack();
             return true;
         } else {
             await fuck2();

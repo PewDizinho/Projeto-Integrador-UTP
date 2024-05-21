@@ -1,5 +1,5 @@
 const playerSpeed = 20;
-const enemySpeed = 2;
+let enemySpeed = 2;
 const gameSpeed = 1;
 const player = document.getElementById("player");
 let lastHitEnemy, walk, myTimeout, myOtherTimeout, direction, lifePoint = 3;
@@ -100,9 +100,10 @@ const moveWallX = (wallLeft, wallRight) => {
                 wallLeft.remove();
                 wallRight.remove();
                 animationIsOver = true;
+                wallDirectionX = "ino";
             }
         }
-    }, 10);
+    }, enemySpeed);
 };
 const spawnWallY = () => {
 
@@ -142,10 +143,10 @@ const moveWallY = (wallTop, wallBottom) => {
                 wallTop.remove();
                 wallBottom.remove();
                 animationIsOver = true;
-
+                wallDirectionY = "ino";
             }
         }
-    }, 10);
+    }, 1);
 }
 let timeOutEnemyWall;
 const checkForColissionWallY = (wall) => {
@@ -303,10 +304,12 @@ const loose = () => {
     document.getElementById("console").innerText = "Game Over";
 };
 const gameOrder = [
-    spawnEnemyX,
-    spawnEnemyY,
-    spawnWallX,
-    spawnWallY,
+
+    {
+        execute: () => { spawnWallX(); },
+        speed: 2
+    }
+
 ];
 const wait = async () => {
 
@@ -318,15 +321,25 @@ const wait = async () => {
         }, 50);
     });
 };
+
 const initGame = async () => {
+
     for (let order of gameOrder) {
-        order();
+        enemySpeed -= order.speed;
+        order.execute();
         await until(() => animationIsOver === true);
         animationIsOver = false;
+
     }
-    if (!gameStatus) {
+    if (gameStatus == "playing") {
         document.getElementById("console").innerText = "You Win!";
+        window.electronAPI.setConfig("win", { win: true, room: window.electronAPI.getConfig("playerRoom"), enemyName: window.electronAPI.getConfig("enemyName").toLowerCase() });
+        setTimeout(() => location.href = window.electronAPI.getConfig("playerRoom"), 3000);
+
     }
+
+
+
 };
 const until = (conditionFunction) => {
     const poll = resolve => {
