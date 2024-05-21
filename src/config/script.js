@@ -2,7 +2,7 @@
 document.getElementById("back").addEventListener("click", () => {
     window.electronAPI.setConfig("audio", document.getElementById("range").value);
 
-    window.location.href = "../home-screen/index.html";
+    window.location.href = "../index.html";
 })
 
 
