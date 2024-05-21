@@ -18,9 +18,7 @@ itensArround = [
 export function interact(playerPosition, itensArround) {
     for (let i = 0; i < itensArround.length; i++) {
         if (Math.abs(playerPosition[0] - itensArround[i].position[0]) <= 30 && Math.abs(playerPosition[1] - itensArround[i].position[1]) <= 30) {
-            dialog(itensArround[i].dialog.title, itensArround[i].dialog.message, document.getElementsByTagName("body")[0]).then((e) => {
-                itensArround[i].dialog.action();
-            });
+            if (itensArround[i].execute) { itensArround[i].execute() }
         }
     }
 }

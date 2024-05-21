@@ -304,11 +304,26 @@ const loose = () => {
     document.getElementById("console").innerText = "Game Over";
 };
 const gameOrder = [
-
+    {
+        execute: () => { spawnEnemyX(); },
+        speed: 1
+    },
+    {
+        execute: () => { spawnEnemyY(); },
+        speed: 0
+    },
+    {
+        execute: () => { spawnEnemyY(); spawnEnemyX(); },
+        speed: 0
+    },
+    {
+        execute: () => { spawnWallY(); },
+        speed: -5
+    },
     {
         execute: () => { spawnWallX(); },
-        speed: 2
-    }
+        speed: -1
+    },
 
 ];
 const wait = async () => {
@@ -324,19 +339,23 @@ const wait = async () => {
 
 const initGame = async () => {
 
-    for (let order of gameOrder) {
-        enemySpeed -= order.speed;
-        order.execute();
-        await until(() => animationIsOver === true);
-        animationIsOver = false;
+    setTimeout(async () => {
+        for (let order of gameOrder) {
+            enemySpeed += order.speed;
+            order.execute();
+            await until(() => animationIsOver === true);
+            animationIsOver = false;
 
-    }
-    if (gameStatus == "playing") {
-        document.getElementById("console").innerText = "You Win!";
-        window.electronAPI.setConfig("win", { win: true, room: window.electronAPI.getConfig("playerRoom"), enemyName: window.electronAPI.getConfig("enemyName").toLowerCase() });
-        setTimeout(() => location.href = window.electronAPI.getConfig("playerRoom"), 3000);
+        }
+        if (gameStatus == "playing") {
+            document.getElementById("console").innerText = "You Win!";
+            window.electronAPI.setConfig("win", { win: true, room: window.electronAPI.getConfig("playerRoom"), enemyName: window.electronAPI.getConfig("enemyName").toLowerCase() });
+            setTimeout(() => location.href = window.electronAPI.getConfig("playerRoom"), 3000);
 
-    }
+        }
+    }, 1500)
+
+
 
 
 

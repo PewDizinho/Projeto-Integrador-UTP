@@ -3,12 +3,16 @@ let counter = 0;
 let isAnimating = false;
 let myAnimation;
 let finished = false;
-export async function dialog(name, dialog, body, callBack) {
-
+export async function dialog(name, dialog, body) {
     let dialogo = document.createElement("div");
     let nextArrow = document.createElement("div");
     let title = document.createElement("h1");
     let textInner = document.createElement("p");
+
+    dialogo.classList = "dialogo";
+    nextArrow.classList = "dialogo";
+    title.classList = "dialogo";
+    textInner.classList = "dialogo";
     nextArrow.style.position = "absolute";
     nextArrow.style.width = "20px";
     nextArrow.style.height = "10px";
@@ -42,6 +46,8 @@ export async function dialog(name, dialog, body, callBack) {
     title.style.zIndex = "999";
     title.style.margin = "14px";
     title.style.bottom = "130px";
+    title.style.userSelect = "none";
+
     nextArrow.style.userSelect = "none";
     textInner.style.color = "white";
     textInner.style.textOverflow = "break-word";
@@ -68,36 +74,32 @@ export async function dialog(name, dialog, body, callBack) {
             textInner.innerText = "";
             counter++;
             textAnimation(textInner, dialog.split(""));
-        } else if (isAnimating) {
-            clearTimeout(myAnimation);
-            isAnimating = false;
-            if (counter < 350) {
-                dialog.split("").length >= 350 ? counter = 350 : counter = dialog.split("").length;
-                textInner.innerText = dialog.split("").slice(0, counter).join("");
-            } else {
-                let msg = dialog.split("");
-                msg.splice(0, 350);
-                textInner.innerText = msg.join("");
-            }
         } else {
+            if (isAnimating) return;
+            textInner.style.display = "none";
+            nextArrow.style.display = "none";
+            dialogo.style.display = "none";
+            title.style.display = "none";
+            textInner.remove();
+            nextArrow.remove();
             dialogo.remove();
             title.remove();
             finished = true;
         }
     });
     const wait = async () => {
-
         return new Promise(function (resolve, reject) {
             setTimeout(function () {
                 if (finished) {
-                    resolve(true)
-                } else resolve(false)
+                    resolve(true);
+                } else resolve(false);
             }, 50);
         });
     }
     const fuck2 = async () => {
         if (await wait()) {
-            callBack();
+            finished = false;
+
             return true;
         } else {
             await fuck2();

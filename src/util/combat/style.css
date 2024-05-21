@@ -1,5 +1,8 @@
 @import url('../../assets/fonts/minecraftia.ttf');
 
+* {
+    user-select: none;
+}
 body {
     width: 100vw;
     height: 100vh;

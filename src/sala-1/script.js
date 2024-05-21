@@ -35,7 +35,8 @@ let doors = [
 
 let playerPosition = [630, 270];
 let rotation = 180;
-// dialog("Audrey", "Olá boa tarde, me empresta 10 mil Kwanzas?", document.getElementsByTagName("body")[0]).then((e) => {
+const _body = document.getElementsByTagName("body")[0];
+// dialog("Audrey", "Olá boa tarde, me empresta 10 mil Kwanzas?", _body).then((e) => {
 //     combat("../../sala-1/index.html", "paulo")
 // });
 
@@ -47,27 +48,62 @@ document.addEventListener("DOMContentLoaded", (e) => {
     if (window.electronAPI.getConfig("win").win) {
         switch (window.electronAPI.getConfig("win").enemyName) {
             case "joão":
-                dialog("João", "Você venceu!", document.getElementsByTagName("body")[0]).then(() => {
+                dialog("João", "Entendeu agora Mark? Agora vai lá, e pega seu bendito cachorro quente antes que feche, lembre-se, você tem até as 22 pra conseguir fazer isso", _body).then(() => {
                     window.electronAPI.setConfig("win", false);
                     window.electronAPI.setConfig("enemyName", null);
                 });
                 break;
         }
     }
-})
+});
+
 document.addEventListener("keydown", (e) => {
     if (e.key == "e") {
         interact(playerPosition, [
             {
                 name: "João",
                 position: [690, 270],
-                dialog: {
-                    title: "João",
-                    message: "Ei, Mark, acorda cara",
-                    action: () => { 
-                        dialog("Mark", "")
-                     }
-                },
+                execute:
+                    async () => {
+
+                        dialog("...", "Mark, Mark, acorda Mark", _body).then(() => {
+                            dialog("Mark", "Ah? que que foi?", _body).then(() => {
+                                dialog("João", "Você tá dormindo na sala cara, acorda", _body).then(() => {
+                                    dialog("Mark", "Eu to cansado cara, me deixa", _body).then(() => {
+                                        dialog(" ", "*Barriga Roncando*", _body).then(() => {
+                                            dialog("Mark", "Ótimo, agora eu to com fome, será que a barraquinha de cachorro quente no estacionamento da facul ainda tá aberta?", _body).then(() => {
+                                                dialog("João", "Ela fecha as 10, que horas são agora?", _body).then(() => {
+                                                    dialog("Mark", "21:30, tenho 30 minutos pra chegar lá, da tempo e sobra", _body).then(() => {
+                                                        dialog("João", "Cara, os professores não vão deixar você sair assim fácil não, a gente tá na última semana antes da prova", _body).then(() => {
+                                                            dialog("Mark", "Ah, não custa tentar, né?", _body).then(() => {
+                                                                dialog("João", "Vai por sua conta e risco, mas antes, deixa eu te explicar umas coisas", _body).then(() => {
+                                                                    dialog("João", "Você pode apertar \"E\" pra interagir com personagens como eu", _body).then(() => {
+                                                                        dialog("Mark", "Que? Como assim?", _body).then(() => {
+                                                                            dialog("João", "Mark calaboca e escuta, esse é um jogo feito em menos de um mês pra um trabalho da facul, os desenvolvedores não quiseram criar um tutorial então deixa eu te explicar", _body).then(() => {
+                                                                                dialog("Mark", "Preguiçosos...", _body).then(() => {
+                                                                                    dialog("João", "Cada personagem que você enfrentar vai ter um tipo de desafio diferente, ou utilizar o nosso sistema padrão de combate", _body).then(() => {
+                                                                                        dialog("Mark", "Sistema de combate? Eu não sei lutar joão", _body).then(() => {
+                                                                                            dialog("João", "Você não vai ter que lutar não Mark, olha, deixa eu te mostrar como funciona, lembre-se de desviar dos obstáculos", _body).then(() => {
+                                                                                                combat("../../sala-1/index.html", "João")
+                                                                                            })
+                                                                                        })
+                                                                                    })
+                                                                                })
+                                                                            })
+                                                                        })
+                                                                    })
+                                                                })
+                                                            })
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        });//
+                    }
             }
         ]);
     }
