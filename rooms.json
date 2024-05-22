@@ -1,0 +1,68 @@
+{
+  "roomsObj": [
+    {
+      "sala-1": {
+        "path": "./src/sala-1/index.html",
+        "position": [
+          600,
+          570
+        ],
+        "rotation": 180,
+        "tag": "speak_with_jessica"
+      },
+      "sala-2": {
+        "path": "./src/sala-2/index.html",
+        "position": [
+          1,
+          1
+        ],
+        "rotation": 1,
+        "tag": "2"
+      },
+      "rooms": [
+        {
+          "key": "sala-1",
+          "path": "./src/sala-1/index.html",
+          "position": [
+            600,
+            570
+          ],
+          "rotation": 180,
+          "tag": "speak_with_jessica"
+        }
+      ]
+    }
+  ],
+  "sala-1": {
+    "key": "sala-1",
+    "path": "./src/sala-1/index.html",
+    "position": [
+      600,
+      570
+    ],
+    "rotation": 180,
+    "tag": "speak_with_jessica"
+  },
+  "sala-2": {
+    "key": "sala-2",
+    "path": "./src/sala-2/index.html",
+    "position": [
+      1,
+      1
+    ],
+    "rotation": 1,
+    "tag": "2"
+  },
+  "rooms": [
+    {
+      "key": "sala-1",
+      "path": "./src/sala-1/index.html",
+      "position": [
+        600,
+        570
+      ],
+      "rotation": 180,
+      "tag": "speak_with_jessica"
+    }
+  ]
+}

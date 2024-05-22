@@ -3,6 +3,7 @@ import { interact } from '../util/interact.js';
 import { walk } from '../util/walk.js';
 import { combat } from '../util/combat.js';
 import { dialog } from '../util/dialogo.js';
+window.electronAPI.setConfig("playerRoom", 'sala-1');
 let walls = [
     [
         [780, 620], [840, -1]
@@ -24,27 +25,30 @@ let walls = [
     ]
 ];
 
-let doors = [
+let playerPosition, doors = [
     {
         position: [[540, 600], [690, 600],],
         destination: "corredor",
-        needTag: "chave"
+        needTag: "speak_with_jessica",
+        dialog: "Você precisa falar com a Prof. Jéssica antes de sair da sala"
     }
 ]
 
+window.electronAPI.setConfig("dialog", { isOnDialog: false });
+window.electronAPI.setConfig("enemyName", null);
+if (window.electronAPI.getConfig("firstTime")) {
 
-let playerPosition = [630, 270];
+    playerPosition = [630, 270];
+}else {
+    
+}
 let rotation = 180;
 const _body = document.getElementsByTagName("body")[0];
-// dialog("Audrey", "Olá boa tarde, me empresta 10 mil Kwanzas?", _body).then((e) => {
-//     combat("../../sala-1/index.html", "paulo")
-// });
+
 
 walk(document, walls, doors, playerPosition, rotation);
 
-//690 270
 document.addEventListener("DOMContentLoaded", (e) => {
-    console.log(window.electronAPI.getConfig("win"))
     if (window.electronAPI.getConfig("win").win) {
         switch (window.electronAPI.getConfig("win").enemyName) {
             case "joão":
@@ -64,8 +68,8 @@ document.addEventListener("keydown", (e) => {
                 name: "João",
                 position: [690, 270],
                 execute:
-                    async () => {
-
+                    () => {
+                        if (window.electronAPI.getConfig("dialog").isOnDialog) return;
                         dialog("...", "Mark, Mark, acorda Mark", _body).then(() => {
                             dialog("Mark", "Ah? que que foi?", _body).then(() => {
                                 dialog("João", "Você tá dormindo na sala cara, acorda", _body).then(() => {
@@ -104,8 +108,20 @@ document.addEventListener("keydown", (e) => {
                             })
                         });//
                     }
+            },
+            {
+                name: "Prof. Jéssica",
+                position: [240, 30],
+                execute:
+                    () => {
+                        dialog("Prof. Jéssica", "Mark, você não pode sair agora, a prova é amanhã", _body).then(() => {
+                            window.electronAPI.setTag("speak_with_jessica");
+                        });
+                    }
             }
         ]);
+
+
     }
 
 });

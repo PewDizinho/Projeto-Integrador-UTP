@@ -26,7 +26,9 @@ let doors = [
     {
         position: [[270, 210], [360, 210],],
         destination: "sala-1",
-        needTag: "chave"
+        needTag: false,
+        dialog: ""
+
     }
 ];
 let playerPosition = [30, 300];

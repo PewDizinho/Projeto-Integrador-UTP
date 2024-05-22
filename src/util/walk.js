@@ -1,3 +1,4 @@
+import { dialog } from "./dialogo.js";
 
 
 
@@ -36,6 +37,7 @@ export function walk(document, walls, doors, playerPosition, rotation) {
         }
     });
     const walkDelay = (key) => {
+        if (window.electronAPI.getConfig("dialog").isOnDialog) return;
 
         let keysAction = {
             "w": () => {
@@ -93,17 +95,21 @@ export function walk(document, walls, doors, playerPosition, rotation) {
             }
         });
         doors.forEach(door => {
-            let startDoor = door.position[0];
-            let endDoor = door.position[1];
-            if (playerX >= startDoor[0] && playerX <= endDoor[0] && playerY <= startDoor[1] && playerY >= endDoor[1]) {
-                location.href = `../${door.destination}/index.html`;
-                collision = `door-${door.destination}-${door.needTag}`;
+            if (playerX >=  door.position[0][0] && playerX <= door.position[1][0] && playerY <=  door.position[0][1] && playerY >= door.position[1][1]) {
+                if (window.electronAPI.hasTag(door.needTag) || !door.needTag) {
+                    location.href = `../${door.destination}/index.html`;
+                    collision = `door-${door.destination}-${door.needTag}`;
+                } else {
+                    dialog("Porta", door.dialog, document.getElementsByTagName("body")[0]).then(() => {
+                        player.style.transform = `rotate(${rotation * -1}deg)`;
+                    });
+                }
             }
         })
 
 
 
-        return collision; s
+        return collision;
     };
 }
 

@@ -1,6 +1,12 @@
 {
-  "audio": "100",
-  "playerRoom": "../../sala-1/index.html",
+  "audio": 100,
+  "playerRoom": "sala-1",
   "enemyName": null,
-  "win": false
+  "win": false,
+  "dialog": {
+    "isOnDialog": false
+  },
+  "tags": [
+    "speak_with_jessica"
+  ]
 }

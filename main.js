@@ -2,11 +2,10 @@ const { app, BrowserWindow, ipcMain } = require('electron/main');
 const path = require('node:path');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('config.json');
-const db = low(adapter);
+const db = low(new FileSync('config.json'));
+const rooms = low(new FileSync('rooms.json'));
 
 // const { screen } = require('electron');
-
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -21,11 +20,56 @@ function createWindow() {
     }
   });
 
-  db.defaults({ audio: 100 }).write();
+  db.defaults({ audio: 100, playerRoom: null, enemyName: null, win: false, dialog: {}, tags: [] }).write();
+  rooms.defaults(
+    {
+      "sala-1": {
+        "key": "sala-1",
+        "path": "./src/sala-1/index.html",
+        "position": [
+          600,
+          570
+        ],
+        "rotation": 180,
+        "tag": "speak_with_jessica"
+      },
+      "sala-2": {
+        "key": "sala-2",
+        "path": "./src/sala-2/index.html",
+        "position": [
+          1,
+          1
+        ],
+        "rotation": 1,
+        "tag": "2"
+      },
+      "rooms": [
+        {
+          "key": "sala-1",
+          "path": "./src/sala-1/index.html",
+          "position": [
+            600,
+            570
+          ],
+          "rotation": 180,
+          "tag": "speak_with_jessica"
+        }
+      ]
+    }
+  ).write();
+
   win.loadFile('./src/index.html');
   win.webContents.openDevTools()
+
+
+  ipcMain.on('get-room', (event, room) => event.returnValue = rooms.get(room).value());
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
   ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())
+  ipcMain.on('set-tag', (event, tag) => {
+    if (db.get('tags').value().indexOf(tag) != -1) return;
+    db.get('tags').push(tag).write();
+  });
+  ipcMain.on('has-tag', (event, tag) => event.returnValue = db.get('tags').value().indexOf(tag) != -1);
 }
 
 

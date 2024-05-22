@@ -4,6 +4,10 @@ let isAnimating = false;
 let myAnimation;
 let finished = false;
 export async function dialog(name, dialog, body) {
+
+    if (window.electronAPI.getConfig("dialog").isOnDialog) return;
+
+    window.electronAPI.setConfig("dialog", { isOnDialog: true });
     let dialogo = document.createElement("div");
     let nextArrow = document.createElement("div");
     let title = document.createElement("h1");
@@ -99,7 +103,7 @@ export async function dialog(name, dialog, body) {
     const fuck2 = async () => {
         if (await wait()) {
             finished = false;
-
+            window.electronAPI.setConfig("dialog", {   isOnDialog: false  });
             return true;
         } else {
             await fuck2();
