@@ -88,7 +88,7 @@ document.addEventListener("keydown", (e) => {
                                                                                     dialog("João", "Cada personagem que você enfrentar vai ter um tipo de desafio diferente, ou utilizar o nosso sistema padrão de combate", _body).then(() => {
                                                                                         dialog("Mark", "Sistema de combate? Eu não sei lutar joão", _body).then(() => {
                                                                                             dialog("João", "Você não vai ter que lutar não Mark, olha, deixa eu te mostrar como funciona, lembre-se de desviar dos obstáculos", _body).then(() => {
-                                                                                                combat("../../sala-1/index.html", "João")
+                                                                                                combat("../../sala-1/index.html", "João");
                                                                                             })
                                                                                         })
                                                                                     })
