@@ -37,10 +37,11 @@ let playerPosition, doors = [
 window.electronAPI.setConfig("dialog", { isOnDialog: false });
 window.electronAPI.setConfig("enemyName", null);
 if (window.electronAPI.getConfig("firstTime")) {
-
+    window.electronAPI.setConfig("firstTime", true);
     playerPosition = [630, 270];
-}else {
-    
+} else {
+    playerPosition = [630, 570];
+
 }
 let rotation = 180;
 const _body = document.getElementsByTagName("body")[0];
@@ -52,10 +53,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
     if (window.electronAPI.getConfig("win").win) {
         switch (window.electronAPI.getConfig("win").enemyName) {
             case "joão":
-                dialog("João", "Entendeu agora Mark? Agora vai lá, e pega seu bendito cachorro quente antes que feche, lembre-se, você tem até as 22 pra conseguir fazer isso", _body).then(() => {
-                    window.electronAPI.setConfig("win", false);
-                    window.electronAPI.setConfig("enemyName", null);
-                });
+                dialog("João", "Entendeu agora Mark? Agora vai lá, e pega seu bendito cachorro quente antes que feche, lembre-se, você tem até as 22 pra conseguir fazer isso", _body);
+                window.electronAPI.setConfig("win", false);
+                window.electronAPI.setConfig("enemyName", null);
                 break;
         }
     }

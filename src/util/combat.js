@@ -3,6 +3,4 @@ export function combat(callBack, enemyName) {
     window.electronAPI.setConfig("playerRoom", callBack);
     window.electronAPI.setConfig("enemyName", enemyName);
     window.electronAPI.setConfig("win", false);
-
-
 }

@@ -26,7 +26,21 @@ const questions = {
     ],
     "fundamentos": [],
     "logica": [],
-    "matematica": []
+    "matematica": [
+        {
+            "pergunta": "Quais das alternativas abaixo representam o domínio da função f(x) = 3/x:",
+            "a": {
+                "resposta": "D(f) =  {x ∈ ℝ / x ≠ 0)",
+                "correto": true,
+                "mensagem": "Essa é a resposta correta!"
+            },
+            "b": {
+                "pergunta": "D(f) = ℝ",
+                "correto": false,
+                "mensagem": "Esse domínio está incorreto pois como existe uma divisão na função X deve ser ≠ 0 para que seja possível de realizar a divisão."
+            }
+        }
+    ]
 }
 
 
