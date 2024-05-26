@@ -32,15 +32,15 @@ let playerPosition, doors = [
         needTag: "speak_with_jessica",
         dialog: "Você precisa falar com a Prof. Jéssica antes de sair da sala"
     }
-]
+];
 
 window.electronAPI.setConfig("dialog", { isOnDialog: false });
 window.electronAPI.setConfig("enemyName", null);
 if (window.electronAPI.getConfig("firstTime")) {
-
     playerPosition = [630, 270];
-}else {
-    
+} else {
+    playerPosition = [630, 570];
+
 }
 let rotation = 180;
 const _body = document.getElementsByTagName("body")[0];
@@ -114,8 +114,14 @@ document.addEventListener("keydown", (e) => {
                 position: [240, 30],
                 execute:
                     () => {
-                        dialog("Prof. Jéssica", "Mark, você não pode sair agora, a prova é amanhã", _body).then(() => {
-                            window.electronAPI.setTag("speak_with_jessica");
+                        dialog("Prof. Jéssica", "Mark, você não pode sair agora, a prova é semana que vem", _body).then(() => {
+                            dialog("Mark", "O professora, eu já sei a matéria, confia po", _body).then(() => {
+                                dialog("Prof. Jéssica", "Ah, já sabe? Então você não se importaria de responder algumas perguntas na lousa, não é mesmo?", _body).then(() => {
+                                    dialog("Mark", "Claro que não me importaria, manda bala 'fessora", _body).then(() => {
+                                        location.href = "../jogo-escolha/index.html";
+                                    })
+                                })
+                            })
                         });
                     }
             }

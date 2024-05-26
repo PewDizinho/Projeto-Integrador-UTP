@@ -6,5 +6,5 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getRoom: (room) => ipcRenderer.sendSync('get-room', room),
   setTag: (tag) => ipcRenderer.send('set-tag', tag),
   hasTag: (tag) => ipcRenderer.sendSync('has-tag',tag),
-})
+});
 

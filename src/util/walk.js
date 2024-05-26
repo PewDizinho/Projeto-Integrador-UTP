@@ -1,21 +1,15 @@
 import { dialog } from "./dialogo.js";
 
-
-
-
 export function walk(document, walls, doors, playerPosition, rotation) {
-
     const playerSpeed = 30;
     const gameSpeed = 1.7;
     let skin = 1;
     const player = document.getElementById("player");
     player.style.transform = `rotate(${rotation}deg)`;
-
-    let isWalking = false;
-    let walk, direction;
+    let walk, direction, isWalking = false;
     player.style.margin = `${playerPosition[1]}px ${playerPosition[0]}px`;
     document.addEventListener("keydown", function (event) {
-        if (["w", "s", "d", "a"].indexOf(event.key) != -1) {
+        if (["w", "s", "d", "a"].indexOf(event.key.toLowerCase()) != -1) {
             if (direction != event.key) {
                 clearInterval(walk);
                 isWalking = false;
@@ -32,7 +26,6 @@ export function walk(document, walls, doors, playerPosition, rotation) {
             if (event.key != direction) return;
             isWalking = false;
             player.src = `../assets/player-1.png`;
-
             clearInterval(walk);
         }
     });
@@ -79,9 +72,7 @@ export function walk(document, walls, doors, playerPosition, rotation) {
         skin !== 3 ? skin++ : skin = 2;
         document.getElementById("console").innerText = `Player X: ${playerPosition[0]} Y: ${playerPosition[1]} | Collision: ${checkCollision(0, 0)}`
         player.src = `../assets/player-${skin}.png`;
-    }
-
-
+    };
     const checkCollision = (x, y) => {
         let playerX = playerPosition[0] + x;
         let playerY = playerPosition[1] + y;
@@ -95,7 +86,7 @@ export function walk(document, walls, doors, playerPosition, rotation) {
             }
         });
         doors.forEach(door => {
-            if (playerX >=  door.position[0][0] && playerX <= door.position[1][0] && playerY <=  door.position[0][1] && playerY >= door.position[1][1]) {
+            if (playerX >= door.position[0][0] && playerX <= door.position[1][0] && playerY <= door.position[0][1] && playerY >= door.position[1][1]) {
                 if (window.electronAPI.hasTag(door.needTag) || !door.needTag) {
                     location.href = `../${door.destination}/index.html`;
                     collision = `door-${door.destination}-${door.needTag}`;
