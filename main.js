@@ -19,7 +19,6 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     }
   });
-
   db.defaults({ audio: 100, playerRoom: null, enemyName: null, win: false, dialog: {}, tags: [] }).write();
   rooms.defaults(
     {
@@ -86,6 +85,11 @@ function createWindow() {
       {
         label: "Debug",
         submenu: [
+          {
+            click: () => win.webContents.reload(),
+            label: 'Reload',
+            accelerator: "CmdOrCtrl+R"
+          },
           {
             click: () => {
               new BrowserWindow({

@@ -29,6 +29,12 @@ let doors = [
         needTag: false,
         dialog: ""
 
+    },
+    {
+        position: [[690, 360], [810, 360]],
+        destination: "recepcao",
+        needTag: "stairs",
+        dialog: "Eu ainda preciso falar com os outros professores antes de sair da faculdade"
     }
 ];
 let playerPosition = [30, 300];
