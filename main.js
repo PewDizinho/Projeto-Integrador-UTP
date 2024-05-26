@@ -93,7 +93,6 @@ function createWindow() {
                 width: 400,
                 autoHideMenuBar: true,
               }).webContents.loadFile('./config.json');
-
             },
             label: 'See Config.json'
           },

@@ -4,7 +4,7 @@
   "enemyName": null,
   "win": false,
   "dialog": {
-    "isOnDialog": true
+    "isOnDialog": false
   },
   "tags": [
     "speak_with_jessica"
