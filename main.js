@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron/main');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron/main');
 const path = require('node:path');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
@@ -13,7 +13,7 @@ function createWindow() {
     width: 900,
     resizable: false,
     alwaysOnTop: true,
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
@@ -57,8 +57,69 @@ function createWindow() {
       ]
     }
   ).write();
+
+
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate([
+      {
+        label: "Location",
+        submenu: [
+          {
+            click: () => win.webContents.loadFile('./src/sala-1/index.html'),
+            label: 'Main Menu'
+          },
+          {
+            click: () => win.webContents.loadFile('./src/corredor/index.html'),
+            label: 'corredor'
+          },
+          {
+            click: () => win.webContents.loadFile('./src/jogo-escolha/index.html'),
+            label: 'Jogo Escolha'
+          },
+          {
+            click: () => win.webContents.loadFile('./src/jogo-movimentacao/index.html'),
+            label: 'jogo-movimentacao'
+          }
+
+        ]
+      },
+      {
+        label: "Debug",
+        submenu: [
+          {
+            click: () => {
+              new BrowserWindow({
+                height: 400,
+                width: 400,
+                autoHideMenuBar: true,
+              }).webContents.loadFile('./config.json');
+
+            },
+            label: 'See Config.json'
+          },
+          {
+            click: () => win.webContents.isDevToolsOpened() ? win.webContents.closeDevTools() : win.webContents.openDevTools(),
+            label: 'Dev Tools'
+          },
+          {
+            click: () => {
+              db.set('audio', 100).write();
+              db.set('playerRoom', null).write();
+              db.set('enemyName', null).write();
+              db.set('win', false).write();
+              db.set('dialog', {}).write();
+              db.set('tags', []).write();
+            },
+            label: 'Reset Database'
+          },
+        ]
+      }
+    ],
+    )
+  )
+
   win.loadFile('./src/index.html');
-  win.webContents.openDevTools()
+
   ipcMain.on('get-room', (event, room) => event.returnValue = rooms.get(room).value());
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
   ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())

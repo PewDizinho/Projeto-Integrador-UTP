@@ -43,10 +43,11 @@ const questions = {
     ]
 }
 
-
+let gameStatus = "init";
 let questionObj = questions.web[0];
 document.addEventListener("DOMContentLoaded", drawQuestion(questionObj))
 function drawQuestion(question) {
+    gameStatus = "playing";
     document.getElementById("question").innerText = question.pergunta;
     document.getElementById("awnser-1").innerText = question.a.resposta;
     document.getElementById("awnser-2").innerText = question.b.resposta;
@@ -57,8 +58,8 @@ const awnsers = document.getElementsByClassName("awnsers");
 let selected;
 for (let i of awnsers) {
     i.addEventListener("click", (e) => {
-
-        for (let i of awnsers) { //Coisa feia que tem que arrumar depois
+        if (gameStatus == "end") return;
+        for (let i of awnsers) {
             i.classList = "awnsers";
         }
 
@@ -66,6 +67,7 @@ for (let i of awnsers) {
             i.classList = "awnsers";
             selected = "";
         } else {
+            gameStatus = "selected";
             selected = i.id;
             i.classList = "awnsers selected";
         }
@@ -86,6 +88,7 @@ const tickTime = () => {
     if (Math.floor(timerWidth) == 10) { timer.style.backgroundColor = "rgb(77, 0, 0)" }
     timer.style.width = timerWidth + "%";
     if (timerWidth <= 0) {
+        gameStatus = "end";
         checkForWin(selected, questionObj);
         return;
     };
@@ -96,15 +99,15 @@ const tickTime = () => {
 tickTime();
 
 function checkForWin(selected, question) {
-
     if (selected) {
+
         let obj = question[["", "a", "b", "c", "d"][selected.replace("awnser-", "")]];
-        if (obj.correto)
-            document.getElementById("result").innerText = `Correto! ${obj.mensagem}`;
-        else
-            document.getElementById("result").innerText = `Errado! ${obj.mensagem}`;
-
-    } else
+        obj.correto ? document.getElementById("result").innerText = `Correto! ${obj.mensagem}` : document.getElementById("result").innerText = `Errado! ${obj.mensagem}`;
+    } else {
         document.getElementById("result").innerText = "Errado! Você não selecionou nenhuma resposta.";
-
+    };
+    setTimeout(() => {
+        window.location.reload();
+    }, 5000);
+    //send back to another question
 }
