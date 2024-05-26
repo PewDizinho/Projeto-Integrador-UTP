@@ -4,15 +4,12 @@ let isAnimating = false;
 let myAnimation;
 let finished = false;
 export async function dialog(name, dialog, body) {
-
     if (window.electronAPI.getConfig("dialog").isOnDialog) return;
-
     window.electronAPI.setConfig("dialog", { isOnDialog: true });
     let dialogo = document.createElement("div");
     let nextArrow = document.createElement("div");
     let title = document.createElement("h1");
     let textInner = document.createElement("p");
-
     dialogo.classList = "dialogo";
     nextArrow.classList = "dialogo";
     title.classList = "dialogo";
@@ -51,7 +48,6 @@ export async function dialog(name, dialog, body) {
     title.style.margin = "14px";
     title.style.bottom = "130px";
     title.style.userSelect = "none";
-
     nextArrow.style.userSelect = "none";
     textInner.style.color = "white";
     textInner.style.textOverflow = "break-word";

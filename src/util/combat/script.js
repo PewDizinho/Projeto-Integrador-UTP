@@ -327,7 +327,6 @@ const gameOrder = [
 
 ];
 const wait = async () => {
-
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             if (finished) {
@@ -343,15 +342,13 @@ const initGame = async () => {
         for (let order of gameOrder) {
             enemySpeed += order.speed;
             order.execute();
-            await until(() => animationIsOver === true);
+            await until(() => animationIsOver === true);//<---a
             animationIsOver = false;
-
         }
         if (gameStatus == "playing") {
             document.getElementById("console").innerText = "You Win!";
             window.electronAPI.setConfig("win", { win: true, room: window.electronAPI.getConfig("playerRoom"), enemyName: window.electronAPI.getConfig("enemyName").toLowerCase() });
             setTimeout(() => location.href = window.electronAPI.getConfig("playerRoom"), 3000);
-
         }
     }, 1500)
 
