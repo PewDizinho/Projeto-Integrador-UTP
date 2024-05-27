@@ -1,31 +1,136 @@
-const { app, BrowserWindow, ipcMain } = require('electron/main');
+const { app, BrowserWindow, ipcMain, Menu } = require('electron/main');
 const path = require('node:path');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('config.json');
-const db = low(adapter);
+const db = low(new FileSync('config.json'));
+const rooms = low(new FileSync('rooms.json'));
 
 // const { screen } = require('electron');
-
 
 function createWindow() {
   const win = new BrowserWindow({
     height: 700,
     width: 900,
     resizable: false,
-    autoHideMenuBar: true,
+    alwaysOnTop: true,
+    autoHideMenuBar: false,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     }
   });
+  db.defaults({ audio: 100, playerRoom: null, enemyName: null, win: false, dialog: {}, tags: [] }).write();
+  rooms.defaults(
+    {
+      "sala-1": {
+        "key": "sala-1",
+        "path": "./src/sala-1/index.html",
+        "position": [
+          600,
+          570
+        ],
+        "rotation": 180,
+        "tag": "speak_with_jessica"
+      },
+      "sala-2": {
+        "key": "sala-2",
+        "path": "./src/sala-2/index.html",
+        "position": [
+          1,
+          1
+        ],
+        "rotation": 1,
+        "tag": "2"
+      },
+      "rooms": [
+        {
+          "key": "sala-1",
+          "path": "./src/sala-1/index.html",
+          "position": [
+            600,
+            570
+          ],
+          "rotation": 180,
+          "tag": "speak_with_jessica"
+        }
+      ]
+    }
+  ).write();
 
-  db.defaults({ audio: 100 }).write();
+
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate([
+      {
+        label: "Location",
+        submenu: [
+          {
+            click: () => win.webContents.loadFile('./src/sala-1/index.html'),
+            label: 'Main Menu'
+          },
+          {
+            click: () => win.webContents.loadFile('./src/corredor/index.html'),
+            label: 'corredor'
+          },
+          {
+            click: () => win.webContents.loadFile('./src/jogo-escolha/index.html'),
+            label: 'Jogo Escolha'
+          },
+          {
+            click: () => win.webContents.loadFile('./src/jogo-movimentacao/index.html'),
+            label: 'jogo-movimentacao'
+          }
+
+        ]
+      },
+      {
+        label: "Debug",
+        submenu: [
+          {
+            click: () => win.webContents.reload(),
+            label: 'Reload',
+            accelerator: "CmdOrCtrl+R"
+          },
+          {
+            click: () => {
+              new BrowserWindow({
+                height: 400,
+                width: 400,
+                autoHideMenuBar: true,
+              }).webContents.loadFile('./config.json');
+            },
+            label: 'See Config.json'
+          },
+          {
+            click: () => win.webContents.isDevToolsOpened() ? win.webContents.closeDevTools() : win.webContents.openDevTools(),
+            label: 'Dev Tools'
+          },
+          {
+            click: () => {
+              db.set('audio', 100).write();
+              db.set('playerRoom', null).write();
+              db.set('enemyName', null).write();
+              db.set('win', false).write();
+              db.set('dialog', {}).write();
+              db.set('tags', []).write();
+            },
+            label: 'Reset Database'
+          },
+        ]
+      }
+    ],
+    )
+  )
+
   win.loadFile('./src/index.html');
-  win.webContents.openDevTools()
+
+  ipcMain.on('get-room', (event, room) => event.returnValue = rooms.get(room).value());
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
-
-
+  ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())
+  ipcMain.on('set-tag', (event, tag) => {
+    if (db.get('tags').value().indexOf(tag) != -1) return;
+    db.get('tags').push(tag).write();
+  });
+  ipcMain.on('has-tag', (event, tag) => event.returnValue = db.get('tags').value().indexOf(tag) != -1);
 }
 
 
