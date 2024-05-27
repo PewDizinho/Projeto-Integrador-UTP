@@ -1,0 +1,46 @@
+* {
+    user-select: none;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url("../assets/secretaria.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+div#transition {
+    background-color: black;
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    left: 50%;
+    top: 50%;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+
+}
+
+div.transition {
+    animation: forwards 1s ease-in-out;
+    animation-name: animation;
+}
+
+@keyframes animation {
+
+    from {
+        height: 200%;
+        width: 200%;
+    }
+
+    to {
+        width: 0px;
+        height: 0px;
+    }
+}

@@ -64,20 +64,49 @@ function createWindow() {
         label: "Location",
         submenu: [
           {
-            click: () => win.webContents.loadFile('./src/sala-1/index.html'),
-            label: 'Main Menu'
+            click: () => win.webContents.loadFile('./src/index.html'),
+            label: 'Main Menu',
+            accelerator: "CmdOrCtrl+1"
           },
           {
             click: () => win.webContents.loadFile('./src/corredor/index.html'),
-            label: 'corredor'
+            label: 'Corredor',
+            accelerator: "CmdOrCtrl+2"
+          },
+          {
+            click: () => win.webContents.loadFile('./src/sala-1/index.html'),
+            label: 'Sala-1',
+            accelerator: "CmdOrCtrl+3"
+          },
+          {
+            click: () => win.webContents.loadFile('./src/sala-2/index.html'),
+            label: 'Sala-2',
+            accelerator: "CmdOrCtrl+4"
+          },
+          {
+            click: () => win.webContents.loadFile('./src/sala-3/index.html'),
+            label: 'Sala-3',
+            accelerator: "CmdOrCtrl+5"
+          },
+          {
+            click: () => win.webContents.loadFile('./src/secretaria/index.html'),
+            label: 'Secretaria',
+            accelerator: "CmdOrCtrl+6"
+          },
+          {
+            click: () => win.webContents.loadFile('./src/saida/index.html'),
+            label: 'Saída',
+            accelerator: "CmdOrCtrl+7"
           },
           {
             click: () => win.webContents.loadFile('./src/jogo-escolha/index.html'),
-            label: 'Jogo Escolha'
+            label: 'Jogo Escolha',
+            accelerator: "CmdOrCtrl+8"
           },
           {
             click: () => win.webContents.loadFile('./src/jogo-movimentacao/index.html'),
-            label: 'jogo-movimentacao'
+            label: 'jogo-movimentacao',
+            accelerator: "CmdOrCtrl+9"
           }
 
         ]
