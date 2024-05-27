@@ -42,7 +42,8 @@ const startGame = () => {
         for (let card of allCards) {
             card.className = "card card-top";
             card.addEventListener("click", (e) => {
-                console.log(counter)
+              
+                
                 let cardObj = e.target;
                 if (["diamond", "square", "circle", "x"].includes(e.target.id)) {
                     cardObj = e.target.parentNode;
@@ -62,8 +63,7 @@ const startGame = () => {
                     counter = 10;
 
                     let cards = [document.getElementById(selected[0]), document.getElementById(selected[1])];
-                    console.log(cards[0].firstElementChild.id + "  " + cards[1].firstElementChild)
-                    if (cards[0].firstElementChild.id != cards[1].firstElementChild.id) {
+                      if (cards[0].firstElementChild.id != cards[1].firstElementChild.id) {
                         setTimeout(() => {
                             for (let _card of cards) {
                                 _card.style.animation = "flip 1s ease-in-out 1 forwards";
@@ -77,7 +77,7 @@ const startGame = () => {
                         }, 3000);
 
                     } else {
-                        console.log("Igual!");
+                       
                         counter = 0;
                         points++;
                         selected = [0, 0];
@@ -133,7 +133,6 @@ const shuffle = () => {
 
 
         let realIndex = toNumber[i];
-        console.log();
         document.getElementById(toString[counter]).style.margin = `${safeSpots[realIndex][0]}px ${safeSpots[realIndex][1]}px`;
         counter++
     }

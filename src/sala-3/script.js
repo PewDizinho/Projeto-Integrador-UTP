@@ -9,25 +9,25 @@ let walls = [
         [780, 620], [840, -1]
     ],
     [
-        [-1, 150], [240, -1]
+        [600, 620], [800, 420]
     ],
     [
-        [540, 270], [800, 150]
+        [-1, 450], [300, 340]
     ],
     [
-        [540, 420], [800, 300]
+        [-1, 300], [300, 180]
     ],
     [
-        [-1, 450], [420, 330]
+        [420, 450], [800, 340]
     ],
     [
-        [-1, 270], [420, 150]
+        [420, 270], [800, 160]
     ]
 ];
 
 let playerPosition, doors = [
     {
-        position: [[540, 600], [690, 600],],
+        position: [[150, 20], [300, -1],],
         destination: "corredor",
         needTag: "speak_with_jessica",
         dialog: "Você precisa falar com a Prof. Jéssica antes de sair da sala"

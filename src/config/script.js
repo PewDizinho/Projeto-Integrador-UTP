@@ -6,11 +6,14 @@ document.getElementById("back").addEventListener("click", () => {
 })
 
 
-document.addEventListener("DOMContentLoaded", fetch("../../config.json")
-    .then((res) => res.text())
-    .then((text) => {
-        let config = JSON.parse(text);
-        document.getElementById("range").value = config.audio;
-    })
-    .catch((e) => console.error(e)));
+// document.addEventListener("DOMContentLoaded",
+//     fetch("../../config.json")
+//         .then((res) => res.text())
+//         .then((text) => {
+//             let config = JSON.parse(text);
+//             document.getElementById("range").value = config.audio;
+//         })
+//         .catch((e) => console.error(e))
+
+// );
 

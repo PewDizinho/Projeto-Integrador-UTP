@@ -1,3 +1,6 @@
+* {
+    user-select: none;
+}
 body {
     width: 100vw;
     height: 100vh;
@@ -28,9 +31,8 @@ div#whiteboard {
     width: 530px;
     height: 265px;
     background-color: rgba(0, 69, 0, 0);
-    margin-left: 300px;
-    margin-top: 30px;
-    padding: 20px;
+    margin-left: 200px;
+    padding: 10px 20px;
 }
 
 
