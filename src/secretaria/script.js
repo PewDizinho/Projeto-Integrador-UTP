@@ -4,7 +4,10 @@ import { walk } from '../util/walk.js';
 window.electronAPI.setConfig("playerRoom", 'sala-1');
 let walls = [
     [
-        [780, 620], [840, -1]
+        [810, 620], [850, -1]
+    ],
+    [
+        [-1, 620], [30, -1]
     ],
     [
         [-1, 180], [360, -1]
