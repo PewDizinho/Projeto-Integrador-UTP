@@ -3,6 +3,7 @@
 * {
     user-select: none;
 }
+
 body {
     width: 100vw;
     height: 100vh;
@@ -75,6 +76,25 @@ div.wallEnemyTop {
     width: 360px;
     height: 30px;
     /* right:0px; */
+}
+
+div#questions {
+    position: absolute;
+    display: flex;
+    /* margin-top: 160px;
+    margin-left: 60px; */
+}
+
+div#question1,
+div#question2 {
+    background-color: white;
+    height: 360px;
+    width: 180px;
+}
+
+div#question2 {
+    background-color: red;
+
 }
 
 @keyframes shake {

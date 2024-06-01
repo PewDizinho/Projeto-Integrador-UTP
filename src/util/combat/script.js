@@ -335,7 +335,15 @@ const wait = async () => {
         }, 50);
     });
 };
+//------------------------------------------------------------
+//------------------------------------------------------------
+//------------------------------------------------------------
+const ifThisWorkImGonnaKillMyself = () => {
+};
 
+//------------------------------------------------------------
+//------------------------------------------------------------
+//------------------------------------------------------------
 const initGame = async () => {
 
     setTimeout(async () => {
@@ -365,4 +373,4 @@ const until = (conditionFunction) => {
 
     return new Promise(poll);
 }
-document.addEventListener("DOMContentLoaded", () => initGame());
+// document.addEventListener("DOMContentLoaded", () => initGame());

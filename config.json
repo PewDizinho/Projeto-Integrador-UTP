@@ -1,8 +1,9 @@
 {
   "audio": 100,
-  "playerRoom": "saida",
+  "playerRoom": "sala-1",
   "enemyName": null,
   "win": false,
+  "firstTime": true,
   "dialog": {
     "isOnDialog": false
   },
