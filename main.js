@@ -12,7 +12,7 @@ function createWindow() {
     height: 700,
     width: 900,
     resizable: false,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     autoHideMenuBar: false,
     webPreferences: {
       nodeIntegration: true,
@@ -148,10 +148,12 @@ function createWindow() {
       }
     ],
     )
-  )
+  );
 
   win.loadFile('./src/index.html');
 
+
+  ipcMain.on('set-statistic', (event, tag, value) => { db.get('statistic').push(tag, value).write();   })
   ipcMain.on('get-room', (event, room) => event.returnValue = rooms.get(room).value());
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
   ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())

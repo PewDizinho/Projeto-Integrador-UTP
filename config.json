@@ -1,10 +1,37 @@
 {
   "audio": 100,
-  "playerRoom": "saida",
+  "playerRoom": "sala-3",
   "enemyName": null,
   "win": false,
   "dialog": {
     "isOnDialog": false
   },
-  "tags": []
+  "tags": [],
+  "statistic": [
+    "question",
+    {
+      "acertos": 0,
+      "erros": 0
+    },
+    "question",
+    {
+      "acertos": 0,
+      "erros": 0
+    },
+    "question",
+    {
+      "acertos": 0,
+      "erros": 0
+    },
+    "question",
+    {
+      "acertos": 0,
+      "erros": 0
+    },
+    "question",
+    {
+      "acertos": 0,
+      "erros": 0
+    }
+  ]
 }
