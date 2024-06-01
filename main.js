@@ -57,7 +57,7 @@ function createWindow() {
     }
   ).write();
 
-
+/**/
   Menu.setApplicationMenu(
     Menu.buildFromTemplate([
       {
