@@ -1,38 +1,15 @@
 {
   "audio": 100,
   "playerRoom": "sala-1",
- "enemyName": null,
-  "win": false,
+  "enemyName": null,
+  "win": {
+    "win": true,
+    "room": "sala-1",
+    "enemyName": null
+  },
   "firstTime": true,
   "dialog": {
     "isOnDialog": false
   },
-  "tags": [],
-  "statistic": [
-    "question",
-    {
-      "acertos": 0,
-      "erros": 0
-    },
-    "question",
-    {
-      "acertos": 0,
-      "erros": 0
-    },
-    "question",
-    {
-      "acertos": 0,
-      "erros": 0
-    },
-    "question",
-    {
-      "acertos": 0,
-      "erros": 0
-    },
-    "question",
-    {
-      "acertos": 0,
-      "erros": 0
-    }
-  ]
+  "tags": []
 }

@@ -1,5 +1,5 @@
 const playerSpeed = 20;
-let enemySpeed = 2;
+let questions, enemySpeed = 2;
 const gameSpeed = 1;
 const player = document.getElementById("player");
 let lastHitEnemy, walk, myTimeout, myOtherTimeout, direction, lifePoint = 3;
@@ -56,7 +56,7 @@ const walkDelay = (key) => {
         },
     };
     keysAction[key] && keysAction[key]();
-    document.getElementById("console").innerText = `Player X: ${playerPosition[0]} Y: ${playerPosition[1]}`
+
 
     player.style.margin = `${playerPosition[1]}px ${playerPosition[0]}px`;
     clearInterval(walk);
@@ -66,6 +66,7 @@ const walkDelay = (key) => {
 let timeOutEnemy;
 //------------------------------------------------------------
 const spawnWallX = () => {
+
     const wall = document.createElement("div");
     wall.classList.add("wallEnemy");
     wall.id = "wall-left";
@@ -76,6 +77,7 @@ const spawnWallX = () => {
     wallRight.style.right = "0px";
     document.getElementById("playground").appendChild(wallRight);
     moveWallX(wall, wallRight);
+
 };
 let wallDirectionX = "ino";
 const moveWallX = (wallLeft, wallRight) => {
@@ -205,7 +207,7 @@ const spawnEnemyX = () => {
         if (i % 2 !== 0) continue;
         enemy.style.width = "20px";
         enemy.style.height = "20px";
-        enemy.style.backgroundColor = "red";
+        enemy.style.backgroundColor = "yellow";
         enemy.style.position = "absolute";
         enemy.style.margin = `0px ${i * 20}px`;
         enemy.id = i;
@@ -233,7 +235,7 @@ const spawnEnemyY = () => {
         if (i % 2 !== 0) continue;
         enemy.style.width = "20px";
         enemy.style.height = "20px";
-        enemy.style.backgroundColor = "red";
+        enemy.style.backgroundColor = "yellow";
         enemy.style.position = "absolute";
         enemy.style.margin = `${i * 20}px 0px `;
         enemy.id = i;
@@ -304,6 +306,16 @@ const loose = () => {
     document.getElementById("console").innerText = "Game Over";
 };
 const gameOrder = [
+
+    {
+        execute: () => { spawnEnemyX(); },
+        speed: 1
+    },
+    {
+        execute: () => { initQuestion(); },
+        speed: 0
+    },
+
     {
         execute: () => { spawnEnemyX(); },
         speed: 1
@@ -313,7 +325,15 @@ const gameOrder = [
         speed: 0
     },
     {
+        execute: () => { initQuestion(); },
+        speed: 0
+    },
+    {
         execute: () => { spawnEnemyY(); spawnEnemyX(); },
+        speed: 0
+    },
+    {
+        execute: () => { initQuestion(); },
         speed: 0
     },
     {
@@ -338,14 +358,115 @@ const wait = async () => {
 //------------------------------------------------------------
 //------------------------------------------------------------
 //------------------------------------------------------------
-const ifThisWorkImGonnaKillMyself = () => {
+let pergunta;
+const initQuestion = () => {
+    const avaibleQuestions = ["web", "fundamentos", "logica", "matematica"];
+    let subjectSelected = avaibleQuestions[Math.floor(Math.random() * avaibleQuestions.length)];
+    pergunta = questions[subjectSelected][Math.floor(Math.random() * questions[subjectSelected].length)];
+    const perguntaObj = document.getElementById("question");
+    perguntaObj.innerText = pergunta["pergunta"];
+    questionIncrease();
 };
 
+let questionCounter = 0;
+let anotherFuckingtimeout = setTimeout(() => { }, 1);
+const questionDecrease = () => {
+    const question1 = document.getElementById("question1");
+    const question2 = document.getElementById("question2");
+    clearTimeout(anotherFuckingtimeout);
+    anotherFuckingtimeout = setTimeout(() => {
+        questionCounter--;
+        question1.style.width = questionCounter + "px";
+        question2.style.width = questionCounter + "px";
+        if (questionCounter == 0) {
+            document.getElementById("question").innerText = ""
+            animationIsOver = true;
+            return;
+        }
+        questionDecrease();
+    }, 1);
+}
+const questionIncrease = () => {
+    const question1 = document.getElementById("question1");
+    const question2 = document.getElementById("question2");
+    clearTimeout(anotherFuckingtimeout);
+    anotherFuckingtimeout = setTimeout(() => {
+        questionCounter++;
+        question1.style.width = questionCounter + "px";
+        question2.style.width = questionCounter + "px";
+        if (questionCounter == 180) {
+
+            animateTimer();
+            return;
+        }
+        questionIncrease();
+    }, 1);
+}
+let wallkillDirection = "ino";
+const killLeftSide = () => {
+    const wall = document.createElement("div");
+    wall.classList.add("wallEnemy");
+    wall.id = "wall-left";
+    document.getElementById("playground").appendChild(wall);
+    moveWallleft(wall);
+
+}
+function moveWallleft(wall) {
+    setTimeout(() => {
+        if (new Number(wall.style.width.replace("px", "")) <= 178 && wallkillDirection === "ino") {
+            wall.style.width = `${new Number(wall.style.width.replace("px", "")) + 4}px`;
+            checkForColissionWallX(wall);
+            moveWallleft(wall);
+        } else {
+            wallkillDirection = "voltano";
+            if (new Number(wall.style.width.replace("px", "")) > 0) {
+                wall.style.width = `${new Number(wall.style.width.replace("px", "")) - 1}px`;
+                checkForColissionWallX(wall);
+                moveWallleft(wall);
+            } else {
+                wall.remove();
+                questionDecrease();
+                wallkillDirection = "ino";
+            }
+        }
+    }, 1);
+}
+const killRightSide = () => {
+    const wallRight = document.createElement("div");
+    wallRight.classList.add("wallEnemy");
+    wallRight.id = "wall-right";
+    wallRight.style.right = "0px";
+    document.getElementById("playground").appendChild(wallRight);
+    moveWallleft(wallRight);
+
+}
+function killWrongSide() {
+    pergunta["correto"] ? killLeftSide() : killRightSide();
+}
+let timerWidth = 101;
+let timerCallBack = setTimeout(() => { }, 1);
+let timerObj = document.getElementById("timer");
+function animateTimer() {
+    timerWidth -= 0.1;
+    if (Math.floor(timerWidth) == 100) { timerObj.style.backgroundColor = "green" }
+    if (Math.floor(timerWidth) == 80) { timerObj.style.backgroundColor = "greenyellow" }
+    if (Math.floor(timerWidth) == 50) { timerObj.style.backgroundColor = "yellow" }
+    if (Math.floor(timerWidth) == 30) { timerObj.style.backgroundColor = "red" }
+    if (Math.floor(timerWidth) == 10) { timerObj.style.backgroundColor = "rgb(77, 0, 0)" }
+    timerObj.style.width = timerWidth + "%";
+    clearInterval(timerCallBack);
+    if (timerWidth <= 0) {
+        setTimeout(() => timerWidth = 102, 2000);
+        killWrongSide();
+        return;
+    };
+    timerCallBack = setInterval(animateTimer, 10);
+}
 //------------------------------------------------------------
 //------------------------------------------------------------
 //------------------------------------------------------------
 const initGame = async () => {
-
+    await getData();
     setTimeout(async () => {
         for (let order of gameOrder) {
             enemySpeed += order.speed;
@@ -354,17 +475,18 @@ const initGame = async () => {
             animationIsOver = false;
         }
         if (gameStatus == "playing") {
-            document.getElementById("console").innerText = "You Win!";
-            window.electronAPI.setConfig("win", { win: true, room: window.electronAPI.getConfig("playerRoom"), enemyName: window.electronAPI.getConfig("enemyName").toLowerCase() });
+            window.electronAPI.setConfig("win", { win: true, room: window.electronAPI.getConfig("playerRoom"), enemyName: window.electronAPI.getConfig("enemyName") });
             setTimeout(() => location.href = window.electronAPI.getConfig("playerRoom"), 3000);
         }
     }, 1500)
-
-
-
-
-
 };
+
+const getData = async () => {
+    let file = await fetch("./../../assets/questions.json");
+    questions = JSON.parse(await file.text());
+    console.log(questions)
+    return true;
+}
 const until = (conditionFunction) => {
     const poll = resolve => {
         if (conditionFunction()) resolve();
@@ -373,4 +495,4 @@ const until = (conditionFunction) => {
 
     return new Promise(poll);
 }
-// document.addEventListener("DOMContentLoaded", () => initGame());
+document.addEventListener("DOMContentLoaded", () => initGame());
