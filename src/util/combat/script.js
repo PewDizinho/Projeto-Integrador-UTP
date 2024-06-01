@@ -408,21 +408,21 @@ const killLeftSide = () => {
     wall.classList.add("wallEnemy");
     wall.id = "wall-left";
     document.getElementById("playground").appendChild(wall);
-    moveWallleft(wall);
+    moveKillWall(wall);
 
 }
-function moveWallleft(wall) {
+function moveKillWall(wall) {
     setTimeout(() => {
-        if (new Number(wall.style.width.replace("px", "")) <= 178 && wallkillDirection === "ino") {
-            wall.style.width = `${new Number(wall.style.width.replace("px", "")) + 4}px`;
+        if (new Number(wall.style.width.replace("px", "")) <= 177 && wallkillDirection === "ino") {
+            wall.style.width = `${new Number(wall.style.width.replace("px", "")) + 6}px`;
             checkForColissionWallX(wall);
-            moveWallleft(wall);
+            moveKillWall(wall);
         } else {
             wallkillDirection = "voltano";
             if (new Number(wall.style.width.replace("px", "")) > 0) {
                 wall.style.width = `${new Number(wall.style.width.replace("px", "")) - 1}px`;
                 checkForColissionWallX(wall);
-                moveWallleft(wall);
+                moveKillWall(wall);
             } else {
                 wall.remove();
                 questionDecrease();
@@ -437,7 +437,7 @@ const killRightSide = () => {
     wallRight.id = "wall-right";
     wallRight.style.right = "0px";
     document.getElementById("playground").appendChild(wallRight);
-    moveWallleft(wallRight);
+    moveKillWall(wallRight);
 
 }
 function killWrongSide() {
