@@ -1,8 +1,13 @@
 {
-  "audio": 100,
-  "playerRoom": "saida",
+  "audio": "0",
+  "playerRoom": "sala-1",
   "enemyName": null,
-  "win": false,
+  "win": {
+    "win": true,
+    "room": "sala-1",
+    "enemyName": null
+  },
+  "firstTime": true,
   "dialog": {
     "isOnDialog": false
   },

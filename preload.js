@@ -5,6 +5,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   getConfig: (config) => ipcRenderer.sendSync('get-config', config),
   getRoom: (room) => ipcRenderer.sendSync('get-room', room),
   setTag: (tag) => ipcRenderer.send('set-tag', tag),
-  hasTag: (tag) => ipcRenderer.sendSync('has-tag',tag),
+  hasTag: (tag) => ipcRenderer.sendSync('has-tag', tag),
+  setStatistic: (tag, value) => ipcRenderer.send('set-statistic', tag, value)
 });
 

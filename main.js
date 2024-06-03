@@ -12,14 +12,14 @@ function createWindow() {
     height: 700,
     width: 900,
     resizable: false,
-    alwaysOnTop: true,
+    alwaysOnTop: false,
     autoHideMenuBar: false,
     webPreferences: {
       nodeIntegration: true,
       preload: path.join(__dirname, 'preload.js'),
     }
   });
-  db.defaults({ audio: 100, playerRoom: null, enemyName: null, win: false, dialog: {}, tags: [] }).write();
+  db.defaults({ audio: 100, playerRoom: null, enemyName: null, win: false, firstTime: true, dialog: {}, tags: [] }).write();
   rooms.defaults(
     {
       "sala-1": {
@@ -56,8 +56,6 @@ function createWindow() {
       ]
     }
   ).write();
-
-/**/
   Menu.setApplicationMenu(
     Menu.buildFromTemplate([
       {
@@ -79,14 +77,9 @@ function createWindow() {
             accelerator: "CmdOrCtrl+3"
           },
           {
-            click: () => win.webContents.loadFile('./src/sala-2/index.html'),
-            label: 'Sala-2',
+            click: () => win.webContents.loadFile('./src/util/combat/index.html'),
+            label: 'Combate',
             accelerator: "CmdOrCtrl+4"
-          },
-          {
-            click: () => win.webContents.loadFile('./src/sala-3/index.html'),
-            label: 'Sala-3',
-            accelerator: "CmdOrCtrl+5"
           },
           {
             click: () => win.webContents.loadFile('./src/secretaria/index.html'),
@@ -97,16 +90,6 @@ function createWindow() {
             click: () => win.webContents.loadFile('./src/saida/index.html'),
             label: 'Saída',
             accelerator: "CmdOrCtrl+7"
-          },
-          {
-            click: () => win.webContents.loadFile('./src/jogo-escolha/index.html'),
-            label: 'Jogo Escolha',
-            accelerator: "CmdOrCtrl+8"
-          },
-          {
-            click: () => win.webContents.loadFile('./src/jogo-movimentacao/index.html'),
-            label: 'jogo-movimentacao',
-            accelerator: "CmdOrCtrl+9"
           }
 
         ]
@@ -148,10 +131,12 @@ function createWindow() {
       }
     ],
     )
-  )
-
+  );
   win.loadFile('./src/index.html');
 
+
+
+  ipcMain.on('set-statistic', (event, tag, value) => { db.get('statistic').push(tag, value).write();   })
   ipcMain.on('get-room', (event, room) => event.returnValue = rooms.get(room).value());
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
   ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())
@@ -162,10 +147,8 @@ function createWindow() {
   ipcMain.on('has-tag', (event, tag) => event.returnValue = db.get('tags').value().indexOf(tag) != -1);
 }
 
-
 app.whenReady().then(() => {
   createWindow();
-
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
@@ -173,11 +156,8 @@ app.whenReady().then(() => {
     }
   })
 })
-
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
-

@@ -1,6 +1,7 @@
 * {
     user-select: none;
 }
+
 body {
     width: 100vw;
     height: 100vh;
@@ -44,8 +45,9 @@ p#question {
 div#awnsers {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    height: 150px;
+    flex-direction: row;
+    height: fit-content;
+
 }
 
 p.awnsers {

@@ -1,0 +1,74 @@
+{
+    "web": [
+        {
+            "pergunta": "A tag <ul> cria listas não ordenadas usando pontos, enquanto a tag <ol> cria listas ordenadas usando números.",
+            "correto": false
+        },
+        {
+            "pergunta": "background-color é usada para alterar a cor de fundo de um elemento.",
+            "correto": true
+        },
+        {
+            "pergunta": "A tag <href> é usada para inserir uma imagem em uma página web.",
+            "correto": false
+        },
+        {
+            "pergunta": "A tag <link> é usada para criar um link em HTML.",
+            "correto": false
+        },
+        {
+            "pergunta": "font-height é usada para alterar o tamanho da fonte de um elemento.",
+            "correto": false
+        },
+        {
+            "pergunta": "O JavaScript é uma linguagem de estilo usada para estilizar elementos HTML em uma página da web.",
+            "correto": false
+        }
+    ],
+    "fundamentos": [
+        {
+            "pergunta": "Na primeira geração foram criados os Chips.",
+            "correto": false
+        },
+        {
+            "pergunta": "A alternativa que corresponde o número 50 em binário é: 00111100",
+            "correto": false
+        },
+        {
+            "pergunta": "William Henry Jobs III foi o responsável pela criação da Apple.",
+            "correto": false
+        },
+        {
+            "pergunta": "Hardware são os componentes físicos de um sistema.",
+            "correto": true
+        }
+    ],
+    "logica": [
+        {
+            "pergunta": "Var1 <- 10 MOD 3 vale 2.",
+            "correto": false
+        },
+        {
+            "pergunta": "Se Var1 <- verdadeiro e (não falso) então ela é: falsa",
+            "correto": false
+        },
+        {
+            "pergunta": "No VisualG a tag ENQUANTO é usada para fazer um laço de repetição.",
+            "correto": true
+        },
+        {
+            "pergunta": "Caracteres é o tipo de variável no VisualG que armazena palavras e nomes.",
+            "correto": true
+        }
+    ],
+    "matematica": [
+        {
+            "pergunta": "O domínio da função f(x) = 3/x é {x ∈ ℝ / x ≠ 0).",
+            "correto": true
+        },
+        {
+            "pergunta": "A∩B = {3,5} quando A = {1,2,3,4} e B = {3,4,5,6}.",
+            "correto": false
+        }
+    ]
+}

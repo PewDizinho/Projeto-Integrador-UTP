@@ -3,7 +3,7 @@ document.getElementById("play").addEventListener("click", () => {
     audio.play();
     setTimeout(() => document.getElementById("transition").classList = "transition", 100);
     setTimeout(() => {
-        window.location.href = "./sala-1/index.html";
+        window.location.href = "./util/combat/index.html";
     }, 1750);
 });
 document.getElementById("config").addEventListener("click", () => {
@@ -11,6 +11,6 @@ document.getElementById("config").addEventListener("click", () => {
     audio.play();
     setTimeout(() => document.getElementById("transition").classList = "transition", 100);
     setTimeout(() => {
-        window.location.href = "./config/index.html";
+        window.location.href = "./about-us/index.html";
     }, 1750);
 });

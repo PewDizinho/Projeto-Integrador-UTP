@@ -3,6 +3,10 @@
 * {
     user-select: none;
 }
+:root {
+    --enemyColor: yellow;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -28,6 +32,7 @@ p#gameOver {
 }
 
 div#playground {
+    display: flex;
     position: absolute;
     left: 30%;
     top: 20%;
@@ -41,29 +46,23 @@ div#player {
     position: absolute;
     height: 20px;
     width: 20px;
-    background-color: green;
+    background-color: white;
     z-index: 2;
 
 }
 
-div.point {
-    position: absolute;
 
-    height: 20px;
-    width: 20px;
-    background-color: yellow;
-}
 
 div.enemy {
     position: absolute;
     height: 20px;
     width: 20px;
-    background-color: red;
+    background-color: var(--enemyColor);
 }
 
 div.wallEnemy {
     position: absolute;
-    background-color: red;
+    background-color: var(--enemyColor);
     height: 360px;
     width: 30px;
     /* right:0px; */
@@ -71,10 +70,26 @@ div.wallEnemy {
 
 div.wallEnemyTop {
     position: absolute;
-    background-color: red;
+    background-color: var(--enemyColor);
     width: 360px;
     height: 30px;
-    /* right:0px; */
+
+}
+
+
+
+div#question1,
+div#question2 {
+    background-color: red;
+    height: 360px;
+    width:0px;
+    position: absolute;
+}
+
+div#question2 {
+    background-color: green;
+    right: 1px;
+
 }
 
 @keyframes shake {
@@ -127,4 +142,35 @@ div.wallEnemyTop {
         color: white;
     }
 
+}
+
+div#question1>p {
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 50px 50px;
+    position: absolute;
+    text-align: center;
+
+}
+div#timer {
+
+    background-color: rgba(0, 128, 0, 0);
+    height: 20px;
+    width: 100%;
+}
+div#question2>p {
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 50px 20px;
+    position: absolute;
+    text-align: center;
+}
+
+p#question {
+    font-size: 20px;
+    margin: 30px 25%;
+    position: absolute;
+    text-align: center;
 }

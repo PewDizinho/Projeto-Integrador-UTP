@@ -1,5 +1,3 @@
-@import url('../assets//fonts/RAVIE.TTF');
-
 body {
     width: 100vw;
     height: 100vh;
@@ -7,8 +5,10 @@ body {
     padding: 0;
     overflow: hidden;
     overflow-x: hidden;
-    background: rgb(195, 195, 195);
-    background: radial-gradient(circle, rgba(195, 195, 195, 1) 0%, rgba(55, 63, 87, 1) 100%, rgba(195, 195, 195, 1) 100%);
+    background-image: url("https://img.freepik.com/fotos-gratis/textura-de-lousa-de-estilo-grunge_1048-10295.jpg?w=996&t=st=1717417939~exp=1717418539~hmac=dc6c42484fcd8449feb06874efaa66990a58ba4187eb764f220195f51b37dbb1");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 
@@ -44,17 +44,9 @@ div.transition {
 
 }
 
-
-h1 {
-    font-family: "RAVIE";
-    font-size: 3rem;
-    color: rgb(0, 0, 0);
-    text-align: center;
-}
-
 div#credits {
     position: absolute;
-    bottom: 15px;
+    bottom: 10px;
     left: 50%;
     transform: translate(-50%);
 }
@@ -67,7 +59,7 @@ div#credits * {
 
 button {
     left: 55%;
-    top: 80%;
+    top: 90%;
     transform: translate(-50%, -50%);
     position: absolute;
     border: none;
@@ -166,14 +158,46 @@ button:focus:not(:focus-visible) {
     outline: none;
 }
 
-/*Text */
+/*Texto */
 
-.text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 45px;
-    margin-right: 45px;
+.texto {
+    gap: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
     margin-top: 15px;
     text-align: justify;
+    overflow-y: scroll;
+    height: 210px;
+}
+
+div {
+    gap: 10px;
+}
+
+@import url("../assets/fonts/Very\ Simple\ Chalk.ttf");
+
+@font-face {
+    font-family: Very Simple Chalk;
+    src: url(../assets/fonts/Very\ Simple\ Chalk.ttf);
+}
+
+h1 {
+    font-family: "Very Simple Chalk";
+    font-size: 4rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+h2 {
+    font-family: "Very Simple Chalk";
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+h3 {
+    font-family: "Very Simple Chalk";
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
 }
