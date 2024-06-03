@@ -1,5 +1,5 @@
 {
-  "audio": 100,
+  "audio": "0",
   "playerRoom": "sala-1",
   "enemyName": null,
   "win": {
