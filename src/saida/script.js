@@ -1,8 +1,6 @@
 
 import { interact } from '../util/interact.js';
 import { walk } from '../util/walk.js';
-import { combat } from '../util/combat.js';
-import { dialog } from '../util/dialogo.js';
 window.electronAPI.setConfig("playerRoom", 'saida');
 let walls = [
     [

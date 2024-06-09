@@ -147,7 +147,7 @@ div#question2 {
 div#question1>p {
     color: black;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     margin: 50px 50px;
     position: absolute;
     text-align: center;
@@ -162,7 +162,7 @@ div#timer {
 div#question2>p {
     color: black;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     margin: 50px 20px;
     position: absolute;
     text-align: center;
