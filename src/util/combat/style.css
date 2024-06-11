@@ -147,10 +147,11 @@ div#question2 {
 div#question1>p {
     color: black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     margin: 50px 50px;
     position: absolute;
     text-align: center;
+    z-index: 999;
 
 }
 div#timer {

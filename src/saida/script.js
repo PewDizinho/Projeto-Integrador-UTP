@@ -39,9 +39,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 document.addEventListener("keydown", (e) => {
     if (e.key == "e") {
-        interact(playerPosition, [
-
-        ]);
+        document.getElementById("end").style.display = "block";
 
 
     }
