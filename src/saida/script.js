@@ -21,9 +21,9 @@ let doors = [
 window.electronAPI.setConfig("dialog", { isOnDialog: false });
 window.electronAPI.setConfig("enemyName", null);
 
-let playerPosition = [630, 270];
+let playerPosition = [420, 30];
 
-let rotation = 180;
+let rotation = 0;
 const _body = document.getElementsByTagName("body")[0];
 
 

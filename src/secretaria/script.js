@@ -25,6 +25,13 @@ let walls = [
 ];
 
 const doors = [
+    {
+        position: [[300, 600], [510, 600],],
+        destination: "saida",
+        needTag: false,
+        dialog: ""
+
+    }
 
 ];
 
