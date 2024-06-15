@@ -19,7 +19,7 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     }
   });
-  db.defaults({ audio: 100, playerRoom: null, enemyName: null, win: false, firstTime: true, dialog: {}, tags: [] }).write();
+  db.defaults({ playerRoom: null, enemyName: null, win: false, firstTime: true, dialog: {}, tags: [] }).write();
   rooms.defaults(
     {
       "sala-1": {
@@ -71,9 +71,10 @@ function createWindow() {
             label: 'Corredor',
             accelerator: "CmdOrCtrl+2"
           },
+          ,
           {
-            click: () => win.webContents.loadFile('./src/sala-1/index.html'),
-            label: 'Sala-1',
+            click: () => win.webContents.loadFile('./src/saida/index.html'),
+            label: 'Saída',
             accelerator: "CmdOrCtrl+3"
           },
           {
@@ -85,11 +86,6 @@ function createWindow() {
             click: () => win.webContents.loadFile('./src/secretaria/index.html'),
             label: 'Secretaria',
             accelerator: "CmdOrCtrl+6"
-          },
-          {
-            click: () => win.webContents.loadFile('./src/saida/index.html'),
-            label: 'Saída',
-            accelerator: "CmdOrCtrl+7"
           }
 
         ]
@@ -135,8 +131,8 @@ function createWindow() {
   win.loadFile('./src/index.html');
 
 
-
-  ipcMain.on('set-statistic', (event, tag, value) => { db.get('statistic').push(tag, value).write();   })
+  // ipcMain.on('get-statistic', (event, tag) => { db.get('statistic')})
+  ipcMain.on('set-statistic', (event, tag, value) => { db.get('statistic').push(tag, value).write(); })
   ipcMain.on('get-room', (event, room) => event.returnValue = rooms.get(room).value());
   ipcMain.on('set-config', (event, config, value) => db.set(config, value).write())
   ipcMain.on('get-config', (event, config) => event.returnValue = db.get(config).value())

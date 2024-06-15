@@ -32,9 +32,9 @@ let doors = [
     },
     {
         position: [[690, 360], [810, 360]],
-        destination: "recepcao",
-        needTag: "stairs",
-        dialog: "Eu ainda preciso falar com os outros professores antes de sair da faculdade"
+        destination: "secretaria",
+
+        dialog: ""
     }
 ];
 let playerPosition = [30, 300];
