@@ -1,11 +1,15 @@
 {
-  "audio": "0",
-  "playerRoom": "saida",
+  "audio": "100",
+  "playerRoom": "sala-1",
   "enemyName": null,
-  "win": false,
+  "win": {
+    "win": true,
+    "room": "../../sala-1/index.html",
+    "enemyName": "Prof. Jéssica"
+  },
   "firstTime": true,
   "dialog": {
-    "isOnDialog": false
+    "isOnDialog": true
   },
   "tags": []
 }

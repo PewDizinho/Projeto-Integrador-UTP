@@ -11,6 +11,6 @@ document.getElementById("config").addEventListener("click", () => {
     audio.play();
     setTimeout(() => document.getElementById("transition").classList = "transition", 100);
     setTimeout(() => {
-        window.location.href = "./about-us/index.html";
+        window.location.href = "./config/index.html";
     }, 1750);
 });
