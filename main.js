@@ -64,6 +64,11 @@ function createWindow() {
           {
             click: () => win.webContents.loadFile('./src/index.html'),
             label: 'Main Menu',
+            accelerator: "CmdOrCtrl+0"
+          },
+          {
+            click: () => win.webContents.loadFile('./src/sala-1/index.html'),
+            label: 'Sala1',
             accelerator: "CmdOrCtrl+1"
           },
           {
@@ -73,19 +78,19 @@ function createWindow() {
           },
           ,
           {
+            click: () => win.webContents.loadFile('./src/secretaria/index.html'),
+            label: 'Secretaria',
+            accelerator: "CmdOrCtrl+3"
+          },
+          {
             click: () => win.webContents.loadFile('./src/saida/index.html'),
             label: 'Saída',
-            accelerator: "CmdOrCtrl+3"
+            accelerator: "CmdOrCtrl+4"
           },
           {
             click: () => win.webContents.loadFile('./src/util/combat/index.html'),
             label: 'Combate',
-            accelerator: "CmdOrCtrl+4"
-          },
-          {
-            click: () => win.webContents.loadFile('./src/secretaria/index.html'),
-            label: 'Secretaria',
-            accelerator: "CmdOrCtrl+6"
+            accelerator: "CmdOrCtrl+5"
           }
 
         ]

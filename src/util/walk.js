@@ -1,6 +1,8 @@
 import { dialog } from "./dialogo.js";
 
 export function walk(document, walls, doors, playerPosition, rotation) {
+
+
     const playerSpeed = 30;
     const gameSpeed = 1.7;
     let skin = 1;
@@ -31,7 +33,6 @@ export function walk(document, walls, doors, playerPosition, rotation) {
     });
     const walkDelay = (key) => {
         if (window.electronAPI.getConfig("dialog").isOnDialog) return;
-
         let keysAction = {
             "w": () => {
 
@@ -70,7 +71,7 @@ export function walk(document, walls, doors, playerPosition, rotation) {
         walk = setInterval(() => { walkDelay(key) }, gameSpeed * 100);
 
         skin !== 3 ? skin++ : skin = 2;
-        document.getElementById("console").innerText = `Player X: ${playerPosition[0]} Y: ${playerPosition[1]} | Collision: ${checkCollision(0, 0)}`
+       // document.getElementById("console").innerText = `Player X: ${playerPosition[0]} Y: ${playerPosition[1]} | Collision: ${checkCollision(0, 0)}`
         player.src = `../assets/player-${skin}.png`;
     };
     const checkCollision = (x, y) => {

@@ -31,11 +31,11 @@ let doors = [
 
     },
     {
-        position: [[690, 360], [810, 360]],
+        position: [[720, 580], [720, 580]],
         destination: "secretaria",
-
+        needTag: false,
         dialog: ""
     }
 ];
-let playerPosition = [30, 300];
-walk(document, walls, doors, playerPosition, -90);
+let playerPosition = [300, 220];
+walk(document, walls, doors, playerPosition, 0);
