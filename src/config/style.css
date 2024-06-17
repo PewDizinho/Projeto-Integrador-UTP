@@ -1,16 +1,18 @@
 body {
-    background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/21789511-c856-4f8b-9cfc-11cebb9eedab/ddpoqvy-11c89208-1311-4e21-9717-736523533582.png/v1/fit/w_816,h_459,q_70,strp/school_pixel_art_by_asaragi_ddpoqvy-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDU5IiwicGF0aCI6IlwvZlwvMjE3ODk1MTEtYzg1Ni00ZjhiLTljZmMtMTFjZWJiOWVlZGFiXC9kZHBvcXZ5LTExYzg5MjA4LTEzMTEtNGUyMS05NzE3LTczNjUyMzUzMzU4Mi5wbmciLCJ3aWR0aCI6Ijw9ODE2In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.W7teWz_0rrJeY0HIe0UE1KkLFgcBxmryOXWksB4IchE') no-repeat center center fixed;
+    background: url('https://preview.redd.it/mljsfmw301d51.png?auto=webp&s=2738aabd77dbd9f86cff2a3c5022b4afa9961a92') no-repeat center center fixed;
     background-size: cover;
-    color: #fff;
-    font-family: Arial, sans-serif;
+    color: #ffffff;
+    text-shadow: rgb(0 0 0) 5px 4px 4px;
+    font-family: minecraftia;
 }
 
 .container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: rgba(68, 68, 68, 0.8);
-    border-radius: 10px;
+    border-style: dashed;
+    border-color: white;
+    background-color: rgba(0, 0, 0, 55%);
 }
 
 h1 {
@@ -20,12 +22,27 @@ h1 {
 
 .form-group {
     margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.back {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button {
+    border-color: #fff;
+    border-style: dashed;
 }
 
 .btn-back {
     background-color: #555;
     color: #fff;
+    text-shadow: rgb(0 0 0) 0px 5px 4px;
     border: none;
+    width: fit-content;
 }
 
 .btn-back:hover {
@@ -39,4 +56,13 @@ h1 {
 
 .creators p {
     margin: 0;
+}
+
+.form-control-range {
+    width: auto;
+}
+
+@font-face {
+    font-family: 'minecraftia';
+    src: url('../assets/fonts/minecraftia.ttf');
 }
