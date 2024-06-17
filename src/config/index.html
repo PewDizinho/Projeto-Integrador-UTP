@@ -1,45 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Escape From Tuiuti</title>
-    <link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações do Jogo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <p id="console" style="position: absolute; margin-left: 10px;">Teste</p>
-    <div id="transition" class="transition"></div>
-    <h1>Configurações</h1>
     <div class="container">
-
-        <div class="slider">
-            <span>Volume</span>
-            <input id="range" type="range" value="0" min="0" max="100" step="1">
+        <h1>Configurações do Jogo</h1>
+        <form>
+            <div class="form-group">
+                <label for="volume">Volume</label>
+                <input type="range" class="form-control-range" id="volume" min="0" max="100">
+            </div>
+            <div class="form-group">
+                <label for="music">Música</label>
+                <input type="checkbox" id="music" checked>
+            </div>
+            <div class="form-group">
+                <label for="fullscreen">Tela Cheia</label>
+                <input type="checkbox" id="fullscreen" onclick="toggleWindowMode(this)">
+            </div>
+            <div class="form-group">
+                <label for="windowed">Modo Janela</label>
+                <input type="checkbox" id="windowed" onclick="toggleFullscreen(this)">
+            </div>
+            <div class="back">
+                <div class="button">
+                    <button type="button" class="btn btn-back btn-block"
+                        onclick="window.location.href='../index.html'">Voltar</button>
+                </div>
+            </div>
+        </form>
+        <div class="creators">
+            <p>Eduardo Edemann</p>
+            <p>Georgia Alvez de Araújo</p>
+            <p>João Gualberto Boissa Netto</p>
+            <p>João Marcos Bizinelli</p>
+            <p>Larissa Vitória Dias</p>
+            <p>Paulo Eduardo Konopka</p>
+            <p style="font-size: larger; margin-top: 15px; cursor: pointer;"
+                onclick="window.open('https://github.com/Pews-Cavern/Projeto-Integrador-UTP', '_blank');">© Pew's Cavern
+                - 2024</p>
         </div>
     </div>
+    <script>
+        function toggleWindowMode(checkbox) {
+            if (checkbox.checked) {
+                document.getElementById('windowed').checked = false;
+            }
+        }
 
-
-
-    <button id="back">
-        <span class="shadow"></span>
-        <span class="edge grey"></span>
-        <span class="front text greyFront">Voltar
-    </button>
-
-
-    <div id="credits">
-        <h1 style="font-size: medium;">Eduardo Edemann<br>
-            Georgia Alvez de Araújo<br>
-            João Gualberto Boissa Netto<br>
-            João Marcos Bizinelli<br>
-            Larissa Vitória Dias<br>
-            Paulo Eduardo Konopka</h1>
-        <h1 style="font-size:larger; margin-top: 15px; cursor: pointer;"
-            onclick="window.open('https://github.com/Pews-Cavern/Projeto-Integrador-UTP', '_blank');">© Pew's Cavern -
-            2024</h1>
-    </div>
-    <script src="./script.js"></script>
+        function toggleFullscreen(checkbox) {
+            if (checkbox.checked) {
+                document.getElementById('fullscreen').checked = false;
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
